@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaygoLogValidator.PaygoValidator.BEANS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,7 @@ namespace PaygoLogValidator
             // Quando true, verificar diretório e criar pasta.
             if (checkBox1.Checked == true)
             {
-                string msg = BO.VerificaEhCriaPastaNoDiretorio(ofd.InitialDirectory = @"C:\pgValidator");
+                string msg = FormBO.VerificaEhCriaPastaNoDiretorio(ofd.InitialDirectory = @"C:\pgValidator");
                 MessageBox.Show(msg);
             }
 
@@ -34,24 +35,51 @@ namespace PaygoLogValidator
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 string fileName = ofd.FileName;
-                // Leitura arquivo
-                if (File.Exists(fileName))
-                {
-                    using (Stream entrada = ofd.OpenFile())
-                    using (StreamReader sr = new StreamReader(entrada))
-                    {
-                        string linha = sr.ReadLine();
 
-                        while (linha != null)
+                // Leitura arquivo
+                try
+                {
+                    if (File.Exists(fileName))
+                    {
+                        using (Stream entrada = ofd.OpenFile())
+                        using (StreamReader sr = new StreamReader(entrada))
                         {
-                            linha = sr.ReadLine();
+                            var linha = sr.ReadLine();
+
+                            if (!string.IsNullOrEmpty(linha))
+                            {
+                                while (linha != null)
+                                {
+                                    linha = sr.ReadLine();
+
+                                    string teste = linha.Substring(18).Trim();
+
+                                    if (teste.Equals(">>>>> Passo 1:"))
+                                    {
+                                        while (!teste.Equals("Passo OK."))
+                                        {
+                                            linha = sr.ReadLine();
+                                        }
+                                        if (teste.Equals("Passo OK.") && !teste.Equals(">>>>> Passo 2:"))
+                                        {
+                                            MessageBox.Show("Passo 1 concluído com sucesso");
+                                        }
+                                    }
+
+                                }
+                            }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Arquivo não existe");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Arquivo não existe");
+                    MessageBox.Show(string.Format("Falha ao processar: {0}", ex.Message));
                 }
+                
 
             }
             else

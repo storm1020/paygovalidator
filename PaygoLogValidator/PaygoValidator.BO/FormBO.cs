@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace PaygoLogValidator
 {
-    public class BO
+    public class FormBO
     {
         public static string VerificaEhCriaPastaNoDiretorio(string diretorio)
         {

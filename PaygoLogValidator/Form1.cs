@@ -53,19 +53,6 @@ namespace PaygoLogValidator
                                     linha = sr.ReadLine();
 
                                     string teste = linha.Substring(18).Trim();
-
-                                    if (teste.Equals(">>>>> Passo 1:"))
-                                    {
-                                        while (!teste.Equals("Passo OK."))
-                                        {
-                                            linha = sr.ReadLine();
-                                        }
-                                        if (teste.Equals("Passo OK.") && !teste.Equals(">>>>> Passo 2:"))
-                                        {
-                                            MessageBox.Show("Passo 1 concluído com sucesso");
-                                        }
-                                    }
-
                                 }
                             }
                         }

@@ -23,6 +23,8 @@ namespace PaygoLogValidator
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = @"C:\pgValidator";
+            List<string> testeUm = new List<string>();
+            string msgTeste = string.Empty;
 
             // Quando true, verificar diretório e criar pasta.
             if (checkBox1.Checked == true)
@@ -36,7 +38,6 @@ namespace PaygoLogValidator
             {
                 string fileName = ofd.FileName;
 
-                // Leitura arquivo
                 try
                 {
                     if (File.Exists(fileName))
@@ -45,33 +46,49 @@ namespace PaygoLogValidator
                         using (StreamReader sr = new StreamReader(entrada))
                         {
                             var linha = sr.ReadLine();
-                            List<string> testeUm = new List<string>();
 
-                            if (!string.IsNullOrEmpty(linha))
+                            if (!string.IsNullOrWhiteSpace(linha))
                             {
                                 while (linha != null)
                                 {
-                                    string teste = linha.Substring(18).Trim();
+                                    if (linha.Contains("Passo 1:"))
+                                    {        
 
-                                    if (teste.Equals(">>>>> Passo 1:"))
-                                    {
-
-                                        while (!linha.Equals("180522 150534 306 >>>>> Passo 2:"))
+                                        while (!linha.Contains("Passo 2:"))
                                         {
                                             testeUm.Add(linha = sr.ReadLine());
                                         }
-                                      
-                                        //do
-                                        //{
-                                        //    testeUm.Add(linha = sr.ReadLine());
-                                            
-                                        //} while (!linha.Equals("180522 150534 306 >>>>> Passo 2:"));
+                                    } else if (linha.Contains("Passo 2:"))
+                                    {
+                                        while (!linha.Contains("Passo 3:"))
+                                        {
+
+                                        }
                                     }
 
                                     linha = sr.ReadLine();
-                                }
+                                }                                
                             }
                         }
+
+                        // Valida o objeto que recebeu o passo
+                        foreach (var item in testeUm)
+                        {
+                            var resultado = item.Substring(17).Trim();
+
+                            if (resultado.Equals("Passo OK."))
+                            {
+                                msgTeste = "Passo 1 OK";
+                            }
+                        }
+
+                        // Valida a msg preenchida pelo método que processou o objeto do passo.
+                        if (msgTeste.Contains("OK"))
+                        {
+                            MessageBox.Show(msgTeste);
+                        }
+
+                        MessageBox.Show("FIM");
                     }
                     else
                     {
@@ -82,7 +99,7 @@ namespace PaygoLogValidator
                 {
                     MessageBox.Show(string.Format("Falha ao processar: {0}", ex.Message));
                 }
-                
+
 
             }
             else

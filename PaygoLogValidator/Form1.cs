@@ -45,14 +45,30 @@ namespace PaygoLogValidator
                         using (StreamReader sr = new StreamReader(entrada))
                         {
                             var linha = sr.ReadLine();
+                            List<string> testeUm = new List<string>();
 
                             if (!string.IsNullOrEmpty(linha))
                             {
                                 while (linha != null)
                                 {
-                                    linha = sr.ReadLine();
-
                                     string teste = linha.Substring(18).Trim();
+
+                                    if (teste.Equals(">>>>> Passo 1:"))
+                                    {
+
+                                        while (!linha.Equals("180522 150534 306 >>>>> Passo 2:"))
+                                        {
+                                            testeUm.Add(linha = sr.ReadLine());
+                                        }
+                                      
+                                        //do
+                                        //{
+                                        //    testeUm.Add(linha = sr.ReadLine());
+                                            
+                                        //} while (!linha.Equals("180522 150534 306 >>>>> Passo 2:"));
+                                    }
+
+                                    linha = sr.ReadLine();
                                 }
                             }
                         }

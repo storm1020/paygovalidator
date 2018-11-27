@@ -52,13 +52,14 @@ namespace PaygoLogValidator
                                 while (linha != null)
                                 {
                                     if (linha.Contains("Passo 1:"))
-                                    {        
+                                    {
 
                                         while (!linha.Contains("Passo 2:"))
                                         {
                                             testeUm.Add(linha = sr.ReadLine());
                                         }
-                                    } else if (linha.Contains("Passo 2:"))
+                                    }
+                                    else if (linha.Contains("Passo 2:"))
                                     {
                                         while (!linha.Contains("Passo 3:"))
                                         {
@@ -67,7 +68,7 @@ namespace PaygoLogValidator
                                     }
 
                                     linha = sr.ReadLine();
-                                }                                
+                                }
                             }
                         }
 

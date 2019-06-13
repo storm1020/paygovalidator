@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ckbCriarPasta = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CapturarEhLerArquivo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -38,7 +38,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.ckbCriarPasta);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.CapturarEhLerArquivo);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -49,15 +49,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PaygoBox";
             // 
-            // checkBox1
+            // ckbCriarPasta
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 147);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(77, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "Criar Pasta";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ckbCriarPasta.AutoSize = true;
+            this.ckbCriarPasta.Location = new System.Drawing.Point(6, 147);
+            this.ckbCriarPasta.Name = "ckbCriarPasta";
+            this.ckbCriarPasta.Size = new System.Drawing.Size(77, 17);
+            this.ckbCriarPasta.TabIndex = 1;
+            this.ckbCriarPasta.Text = "Criar Pasta";
+            this.ckbCriarPasta.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -97,7 +97,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CapturarEhLerArquivo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ckbCriarPasta;
     }
 }
 

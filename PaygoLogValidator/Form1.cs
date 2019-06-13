@@ -1,5 +1,4 @@
-﻿using PaygoLogValidator.PaygoValidator.BEANS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,73 +20,79 @@ namespace PaygoLogValidator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.InitialDirectory = @"C:\pgValidator";
-            List<string> testeUm = new List<string>();
-            string msgTeste = string.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = @"C:\pgValidator";
 
-            // Quando true, verificar diretório e criar pasta.
-            if (checkBox1.Checked == true)
+            #region old
+            //List<string> testeUm = new List<string>();
+            //string msgTeste = string.Empty;
+            #endregion
+
+            //Criar pasta no diretório.
+            if (ckbCriarPasta.Checked)
             {
-                string msg = FormBO.VerificaEhCriaPastaNoDiretorio(ofd.InitialDirectory = @"C:\pgValidator");
+                string msg = FormBO.VerificaEhCriaPastaNoDiretorio(openFileDialog.InitialDirectory = @"C:\pgValidator");
                 MessageBox.Show(msg);
             }
 
-            // Após clique de "OK" ou "SALVAR" no diretório.
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string fileName = ofd.FileName;
+                string fileName = openFileDialog.FileName;
 
                 try
                 {
                     if (File.Exists(fileName))
                     {
-                        using (Stream entrada = ofd.OpenFile())
+                        using (Stream entrada = openFileDialog.OpenFile())
                         using (StreamReader sr = new StreamReader(entrada))
                         {
                             var linha = sr.ReadLine();
 
-                            if (!string.IsNullOrWhiteSpace(linha))
-                            {
-                                while (linha != null)
-                                {
-                                    if (linha.Contains("Passo 1:"))
-                                    {
+                            #region old
+                            //if (!string.IsNullOrWhiteSpace(linha))
+                            //{
+                            //    while (linha != null)
+                            //    {
+                            //        if (linha.Contains("Passo 1:"))
+                            //        {
 
-                                        while (!linha.Contains("Passo 2:"))
-                                        {
-                                            testeUm.Add(linha = sr.ReadLine());
-                                        }
-                                    }
-                                    else if (linha.Contains("Passo 2:"))
-                                    {
-                                        while (!linha.Contains("Passo 3:"))
-                                        {
+                            //            while (!linha.Contains("Passo 2:"))
+                            //            {
+                            //                testeUm.Add(linha = sr.ReadLine());
+                            //            }
+                            //        }
+                            //        else if (linha.Contains("Passo 2:"))
+                            //        {
+                            //            while (!linha.Contains("Passo 3:"))
+                            //            {
 
-                                        }
-                                    }
+                            //            }
+                            //        }
 
-                                    linha = sr.ReadLine();
-                                }
-                            }
+                            //        linha = sr.ReadLine();
+                            //    }
+                            //}
+                            #endregion
                         }
 
+                        #region old
                         // Valida o objeto que recebeu o passo
-                        foreach (var item in testeUm)
-                        {
-                            var resultado = item.Substring(17).Trim();
+                        //foreach (var item in testeUm)
+                        //{
+                        //    var resultado = item.Substring(17).Trim();
 
-                            if (resultado.Equals("Passo OK."))
-                            {
-                                msgTeste = "Passo 1 OK";
-                            }
-                        }
+                        //    if (resultado.Equals("Passo OK."))
+                        //    {
+                        //        msgTeste = "Passo 1 OK";
+                        //    }
+                        //}
 
                         // Valida a msg preenchida pelo método que processou o objeto do passo.
-                        if (msgTeste.Contains("OK"))
-                        {
-                            MessageBox.Show(msgTeste);
-                        }
+                        //if (msgTeste.Contains("OK"))
+                        //{
+                        //    MessageBox.Show(msgTeste);
+                        //}
+                        #endregion
 
                         MessageBox.Show("FIM");
                     }
@@ -100,8 +105,6 @@ namespace PaygoLogValidator
                 {
                     MessageBox.Show(string.Format("Falha ao processar: {0}", ex.Message));
                 }
-
-
             }
             else
             {

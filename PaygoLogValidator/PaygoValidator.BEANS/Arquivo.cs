@@ -10,6 +10,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
     {
         public string Nome { get; set; }
 
+        public string Extensao { get; set; }
+
         public Passos Passos { get; set; }
 
         public Arquivo()
@@ -21,6 +23,31 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
             this.Nome = nome;
             this.Passos = passos;
+        }
+
+        public void VerificaSeArquivoEstaVazio()
+        {
+
+        }
+
+        public void VerificaSeArquivoEhNullo()
+        {
+
+        }
+
+        public void VerificaExtensaoDoArquivo()
+        {
+
+        }
+
+        public void RetornaExtensaoDoArquivo()
+        {
+
+        }
+
+        public void LerArquivo()
+        {
+
         }
     }
 }

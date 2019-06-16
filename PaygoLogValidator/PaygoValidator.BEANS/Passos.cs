@@ -28,5 +28,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.Status = Status;
             this.Obrigatorio = Obrigatorio;
         }
+
     }
 }

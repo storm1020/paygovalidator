@@ -29,5 +29,11 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.Obrigatorio = Obrigatorio;
         }
 
+        //Verificar se o conteudo da leitura é valido.
+        //Adicionar a lista de conteudo.
+        //Identificar a numeração do passo.
+        //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).
+        //Validar se existe a mensagem de teste Ok, ou seja, validar o Status do teste.
+
     }
 }

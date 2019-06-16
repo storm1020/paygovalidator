@@ -49,5 +49,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
 
         }
+
+        //Criar arquivo novo de resultado final.
+        //Inserir arquivo no mesmo diretório que baixou o outro arquivo de log.
     }
 }

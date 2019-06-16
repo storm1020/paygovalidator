@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PaygoValidator.BEANS\Arquivo.cs" />
+    <Compile Include="PaygoValidator.BEANS\Passos.cs" />
     <Compile Include="PaygoValidator.BO\FormBO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -70,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest">
       <SubType>Designer</SubType>
@@ -89,6 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PaygoValidator.DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo-Branco.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

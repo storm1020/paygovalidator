@@ -28,54 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BoxMenu = new System.Windows.Forms.GroupBox();
             this.ckbCriarPasta = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CapturarEhLerArquivo = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.BoxMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // BoxMenu
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Controls.Add(this.ckbCriarPasta);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.CapturarEhLerArquivo);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox1.Location = new System.Drawing.Point(291, 55);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(236, 170);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "PaygoBox";
+            this.BoxMenu.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuItem;
+            this.BoxMenu.AutoSize = true;
+            this.BoxMenu.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BoxMenu.BackgroundImage = global::PaygoLogValidator.Properties.Resources.Logo_Branco;
+            this.BoxMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BoxMenu.Controls.Add(this.ckbCriarPasta);
+            this.BoxMenu.Controls.Add(this.label1);
+            this.BoxMenu.Controls.Add(this.CapturarEhLerArquivo);
+            this.BoxMenu.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BoxMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BoxMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BoxMenu.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.BoxMenu.Location = new System.Drawing.Point(0, 0);
+            this.BoxMenu.Name = "BoxMenu";
+            this.BoxMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BoxMenu.Size = new System.Drawing.Size(800, 451);
+            this.BoxMenu.TabIndex = 0;
+            this.BoxMenu.TabStop = false;
+            this.BoxMenu.UseCompatibleTextRendering = true;
             // 
             // ckbCriarPasta
             // 
             this.ckbCriarPasta.AutoSize = true;
-            this.ckbCriarPasta.Location = new System.Drawing.Point(6, 147);
+            this.ckbCriarPasta.BackColor = System.Drawing.Color.Transparent;
+            this.ckbCriarPasta.Font = new System.Drawing.Font("Britannic Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbCriarPasta.Location = new System.Drawing.Point(201, 296);
             this.ckbCriarPasta.Name = "ckbCriarPasta";
-            this.ckbCriarPasta.Size = new System.Drawing.Size(77, 17);
+            this.ckbCriarPasta.Size = new System.Drawing.Size(177, 36);
             this.ckbCriarPasta.TabIndex = 1;
             this.ckbCriarPasta.Text = "Criar Pasta";
-            this.ckbCriarPasta.UseVisualStyleBackColor = true;
+            this.ckbCriarPasta.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 29);
+            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Font = new System.Drawing.Font("Britannic Bold", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(168, 135);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
+            this.label1.Size = new System.Drawing.Size(468, 49);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Escolha um arquivo";
+            this.label1.Text = "Selecione o arquivo de log:";
+            this.label1.UseCompatibleTextRendering = true;
             // 
             // CapturarEhLerArquivo
             // 
-            this.CapturarEhLerArquivo.Location = new System.Drawing.Point(48, 45);
+            this.CapturarEhLerArquivo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(150)))), ((int)(((byte)(1)))));
+            this.CapturarEhLerArquivo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.CapturarEhLerArquivo.FlatAppearance.BorderSize = 0;
+            this.CapturarEhLerArquivo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.CapturarEhLerArquivo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.CapturarEhLerArquivo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CapturarEhLerArquivo.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CapturarEhLerArquivo.ForeColor = System.Drawing.Color.White;
+            this.CapturarEhLerArquivo.Location = new System.Drawing.Point(201, 204);
             this.CapturarEhLerArquivo.Name = "CapturarEhLerArquivo";
-            this.CapturarEhLerArquivo.Size = new System.Drawing.Size(113, 29);
+            this.CapturarEhLerArquivo.Size = new System.Drawing.Size(362, 63);
             this.CapturarEhLerArquivo.TabIndex = 0;
-            this.CapturarEhLerArquivo.Text = "Abrir Arquivo";
-            this.CapturarEhLerArquivo.UseVisualStyleBackColor = true;
+            this.CapturarEhLerArquivo.Text = "Abrir arquivo";
+            this.CapturarEhLerArquivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.CapturarEhLerArquivo.UseVisualStyleBackColor = false;
             this.CapturarEhLerArquivo.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
@@ -83,18 +106,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.BoxMenu);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.BoxMenu.ResumeLayout(false);
+            this.BoxMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox BoxMenu;
         private System.Windows.Forms.Button CapturarEhLerArquivo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ckbCriarPasta;

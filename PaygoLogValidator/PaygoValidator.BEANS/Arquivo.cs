@@ -8,9 +8,19 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 {
     public class Arquivo
     {
-        public string Nome;
-        public int[] Indice = new int[55];
-        public string Status;
-        public List<string> Conteudo;
+        public string Nome { get; set; }
+
+        public Passos Passos { get; set; }
+
+        public Arquivo()
+        {
+            
+        }
+
+        public Arquivo(string nome, Passos passos)
+        {
+            this.Nome = nome;
+            this.Passos = passos;
+        }
     }
 }

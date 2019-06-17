@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /*
- Classe responsável por aplicação de regras de negócio e tratativasp referente ao Form1.
+ Classe responsável por aplicação de regras de negócio e tratativas referente ao Form1.
 */
 
 namespace PaygoLogValidator

@@ -11,7 +11,6 @@ namespace PaygoLogValidator.PaygoValidator.BO
     {
         public bool VerificarSePassoEhObrigatorio(int numero)
         {
-
             return true;
         }
     }

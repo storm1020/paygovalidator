@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaygoLogValidator.PaygoValidator.BEANS;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace PaygoLogValidator
 {
-    public class FormBO
+    public class FormBO : Arquivo
     {
         public static string VerificaEhCriaPastaNoDiretorio(string diretorio)
         {
@@ -34,5 +35,6 @@ namespace PaygoLogValidator
 
             return retorno;
         }
+
     }
 }

@@ -29,10 +29,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.Obrigatorio = Obrigatorio;
         }
 
-        public List<string> ValidaSeConteudoEhValido(List<string> conteudo)
+        public List<string> ValidarSePassoEhValido(List<string> conteudo)
         {
             List<string> lstRetorno = conteudo;
-
             
 
             return conteudo;

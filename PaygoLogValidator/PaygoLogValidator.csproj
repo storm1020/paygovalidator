@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="PaygoValidator.BEANS\Arquivo.cs" />
     <Compile Include="PaygoValidator.BEANS\Passos.cs" />
+    <Compile Include="PaygoValidator.BO\ArquivoBO.cs" />
     <Compile Include="PaygoValidator.BO\FormBO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

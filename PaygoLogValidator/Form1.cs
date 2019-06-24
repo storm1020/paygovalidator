@@ -22,27 +22,26 @@ namespace PaygoLogValidator
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"C:\pgValidator";
+            Arquivo arquivo = new Arquivo();
+            openFileDialog.InitialDirectory = arquivo.Diretorio;
 
             #region old
             //List<string> testeUm = new List<string>();
             //string msgTeste = string.Empty;
             #endregion
 
-            //Criar pasta no diretório.
             if (ckbCriarPasta.Checked)
             {
-                string msg = FormBO.VerificaEhCriaPastaNoDiretorio(openFileDialog.InitialDirectory = @"C:\pgValidator");
-                MessageBox.Show(msg);
+                arquivo.CriarPastaNoDiretorio();
             }
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string fileName = openFileDialog.FileName;
+                arquivo.nome = openFileDialog.FileName;
 
                 try
                 {
-                    if (File.Exists(fileName))
+                    if (File.Exists(arquivo.nome))
                     {
                         using (Stream entrada = openFileDialog.OpenFile())
                         using (StreamReader sr = new StreamReader(entrada))

@@ -21,95 +21,105 @@ namespace PaygoLogValidator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            Arquivo arquivo = new Arquivo();
-            openFileDialog.InitialDirectory = arquivo.Diretorio;
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //Arquivo arquivo = new Arquivo();
+            //openFileDialog.InitialDirectory = arquivo.Diretorio;
 
             #region old
             //List<string> testeUm = new List<string>();
             //string msgTeste = string.Empty;
             #endregion
 
+            Arquivo arquivo = new Arquivo();
+            OpenFileDialog openFile = new OpenFileDialog();
+            arquivo.passos = new Passos();
+
             if (ckbCriarPasta.Checked)
             {
-                arquivo.CriarPastaNoDiretorio();
+                arquivo.CriarPastaNoDiretorio(arquivo.Diretorio);
             }
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                arquivo.nome = openFileDialog.FileName;
+            List<string> conteudoArquivo = arquivo.LerArquivo(openFile, arquivo.Diretorio);
+            arquivo.passos.conteudo = conteudoArquivo;
 
-                try
-                {
-                    if (File.Exists(arquivo.nome))
-                    {
-                        using (Stream entrada = openFileDialog.OpenFile())
-                        using (StreamReader sr = new StreamReader(entrada))
-                        {
-                            var linha = sr.ReadLine();
 
-                            #region old
-                            //if (!string.IsNullOrWhiteSpace(linha))
-                            //{
-                            //    while (linha != null)
-                            //    {
-                            //        if (linha.Contains("Passo 1:"))
-                            //        {
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //arquivo.nome = openFileDialog.FileName;
 
-                            //            while (!linha.Contains("Passo 2:"))
-                            //            {
-                            //                testeUm.Add(linha = sr.ReadLine());
-                            //            }
-                            //        }
-                            //        else if (linha.Contains("Passo 2:"))
-                            //        {
-                            //            while (!linha.Contains("Passo 3:"))
-                            //            {
+            //try
+            //{
+            //    if (File.Exists(arquivo.nome))
+            //    {
+            //        using (Stream entrada = openFileDialog.OpenFile())
+            //        using (StreamReader sr = new StreamReader(entrada))
+            //        {
+            //            var linha = sr.ReadLine();
 
-                            //            }
-                            //        }
+            //            #region old
+            //            //if (!string.IsNullOrWhiteSpace(linha))
+            //            //{
+            //            //    while (linha != null)
+            //            //    {
+            //            //        if (linha.Contains("Passo 1:"))
+            //            //        {
 
-                            //        linha = sr.ReadLine();
-                            //    }
-                            //}
-                            #endregion
-                        }
+            //            //            while (!linha.Contains("Passo 2:"))
+            //            //            {
+            //            //                testeUm.Add(linha = sr.ReadLine());
+            //            //            }
+            //            //        }
+            //            //        else if (linha.Contains("Passo 2:"))
+            //            //        {
+            //            //            while (!linha.Contains("Passo 3:"))
+            //            //            {
 
-                        #region old
-                        // Valida o objeto que recebeu o passo
-                        //foreach (var item in testeUm)
-                        //{
-                        //    var resultado = item.Substring(17).Trim();
+            //            //            }
+            //            //        }
 
-                        //    if (resultado.Equals("Passo OK."))
-                        //    {
-                        //        msgTeste = "Passo 1 OK";
-                        //    }
-                        //}
+            //            //        linha = sr.ReadLine();
+            //            //    }
+            //            //}
+            //            #endregion
+            //        }
 
-                        // Valida a msg preenchida pelo método que processou o objeto do passo.
-                        //if (msgTeste.Contains("OK"))
-                        //{
-                        //    MessageBox.Show(msgTeste);
-                        //}
-                        #endregion
+            //        #region old
+            //        // Valida o objeto que recebeu o passo
+            //        //foreach (var item in testeUm)
+            //        //{
+            //        //    var resultado = item.Substring(17).Trim();
 
-                        MessageBox.Show("FIM");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Arquivo não existe");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("Falha ao processar: {0}", ex.Message));
-                }
-            }
-            else
-            {
-                MessageBox.Show("Aguardando arquivo");
-            }
+            //        //    if (resultado.Equals("Passo OK."))
+            //        //    {
+            //        //        msgTeste = "Passo 1 OK";
+            //        //    }
+            //        //}
+
+            //        // Valida a msg preenchida pelo método que processou o objeto do passo.
+            //        //if (msgTeste.Contains("OK"))
+            //        //{
+            //        //    MessageBox.Show(msgTeste);
+            //        //}
+            //        #endregion
+
+            //        MessageBox.Show("FIM");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Arquivo não existe");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(string.Format("Falha ao processar: {0}", ex.Message));
+            //}
+            //}
+            //else
+            //{
+            // MessageBox.Show("Aguardando arquivo");
+            //}
+            //}
+            //}
         }
     }
 }

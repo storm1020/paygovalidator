@@ -8,25 +8,25 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 {
     public class Passos
     {
-        public int Numero { get; set; }
+        public int numero { get; set; }
 
-        public List<string> Conteudo { get; set; }
+        public List<string> conteudo { get; set; }
 
-        public bool Status { get; set; }
+        public bool status { get; set; }
 
-        public bool Obrigatorio { get; set; }
+        public bool obrigatorio { get; set; }
 
         public Passos()
         {
 
         }
 
-        public Passos(int Numero, List<string> Conteudo, bool Status, bool Obrigatorio)
+        public Passos(int Numero, List<string> conteudo, bool status, bool obrigatorio)
         {
-            this.Numero = Numero;
-            this.Conteudo = Conteudo;
-            this.Status = Status;
-            this.Obrigatorio = Obrigatorio;
+            this.numero = numero;
+            this.conteudo = conteudo;
+            this.status = status;
+            this.obrigatorio = obrigatorio;
         }
 
         public List<string> ValidarSePassoEhValido(List<string> conteudo)

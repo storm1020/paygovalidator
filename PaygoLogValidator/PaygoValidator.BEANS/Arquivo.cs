@@ -36,7 +36,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             get { return diretorio; }
         }
 
-        public void CriarPastaNoDiretorio()
+        public void CriarPastaNoDiretorio(string diretorio)
         {
             if (!VerificaSeExistePastaNoDiretorio(Diretorio))
             {
@@ -62,17 +62,36 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }
 
-        public List<string> LerArquivo(string nomeArquivo)
+        public List<string> LerArquivo(OpenFileDialog openFile, string diretorio)
         {
             List<string> arquivoRetorno = new List<string>();
 
-            try
-            {
+            openFile.InitialDirectory = diretorio;
+            string nomeArquivo = openFile.FileName;
 
-            }
-            catch (Exception ex)
+            if (openFile.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+                try
+                {
+                    if (ValidaSeArquivoExisteNoDiretorio(nomeArquivo))
+                    {
+                        using (Stream stm = openFile.OpenFile())
+                        using (StreamReader str = new StreamReader(stm))
+                        {
+                            var linha = str.ReadLine();
+                        }
+
+                        MessageBox.Show("Leitura finalizada!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione o arquivo");
             }
 
             return arquivoRetorno;
@@ -80,11 +99,12 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         private bool ValidaSeArquivoExisteNoDiretorio(string nomeArquivo)
         {
-            bool existeArquivo = false;
+            bool existeArquivo = true;
 
-            if (File.Exists(nomeArquivo))
+            if (!File.Exists(nomeArquivo))
             {
-                existeArquivo = true;
+                existeArquivo = false;
+                MessageBox.Show("O arquivo não existe, ou é inválido!");
             }
 
             return existeArquivo;

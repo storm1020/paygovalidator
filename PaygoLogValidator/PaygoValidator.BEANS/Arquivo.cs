@@ -62,36 +62,31 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }
 
-        public List<string> LerArquivo(OpenFileDialog openFile, string diretorio)
+        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile)
         {
             List<string> arquivoRetorno = new List<string>();
 
-            openFile.InitialDirectory = diretorio;
-            string nomeArquivo = openFile.FileName;
-
-            if (openFile.ShowDialog() == DialogResult.OK)
+            try
             {
-                try
+                if (ValidaSeArquivoExisteNoDiretorio(nomeArquivo))
                 {
-                    if (ValidaSeArquivoExisteNoDiretorio(nomeArquivo))
+                    using (Stream stm = objOpenFile.OpenFile())
+                    using (StreamReader str = new StreamReader(stm))
                     {
-                        using (Stream stm = openFile.OpenFile())
-                        using (StreamReader str = new StreamReader(stm))
-                        {
-                            var linha = str.ReadLine();
-                        }
+                        var linha = str.ReadLine();
 
-                        MessageBox.Show("Leitura finalizada!");
+                        while (!string.IsNullOrEmpty(linha))
+                        {
+
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+
+                    MessageBox.Show("Leitura finalizada!");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Selecione o arquivo");
+                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
             }
 
             return arquivoRetorno;
@@ -120,16 +115,18 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         }
 
-        public void VerificaExtensaoDoArquivo()
+        public bool VerificaExtensaoDoArquivo(string nomeArquivo)
         {
+            bool arquivoLog = true;
 
+            if (!nomeArquivo.Contains("log"))
+            {
+                arquivoLog = false;
+                MessageBox.Show("Por favor, selecione um arquivo de log.");
+            }
+
+            return arquivoLog;
         }
-
-        public void RetornaExtensaoDoArquivo()
-        {
-
-        }
-
 
         //Criar arquivo novo de resultado final.
         //Inserir arquivo no mesmo diretório que baixou o outro arquivo de log.

@@ -21,17 +21,9 @@ namespace PaygoLogValidator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //Arquivo arquivo = new Arquivo();
-            //openFileDialog.InitialDirectory = arquivo.Diretorio;
-
-            #region old
-            //List<string> testeUm = new List<string>();
-            //string msgTeste = string.Empty;
-            #endregion
-
-            Arquivo arquivo = new Arquivo();
             OpenFileDialog openFile = new OpenFileDialog();
+            Arquivo arquivo = new Arquivo();
+
             arquivo.passos = new Passos();
 
             if (ckbCriarPasta.Checked)
@@ -39,9 +31,17 @@ namespace PaygoLogValidator
                 arquivo.CriarPastaNoDiretorio(arquivo.Diretorio);
             }
 
-            List<string> conteudoArquivo = arquivo.LerArquivo(openFile, arquivo.Diretorio);
-            arquivo.passos.conteudo = conteudoArquivo;
-
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                arquivo.nome = openFile.FileName;
+                arquivo.VerificaExtensaoDoArquivo(arquivo.nome);
+                List<string> conteudoArquivo = arquivo.LerArquivo(arquivo.nome, arquivo.Diretorio, openFile);
+                arquivo.passos.conteudo = conteudoArquivo;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um arquivo de log.");
+            }
 
             //if (openFileDialog.ShowDialog() == DialogResult.OK)
             //{

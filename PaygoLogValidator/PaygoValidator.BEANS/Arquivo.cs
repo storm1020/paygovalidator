@@ -19,6 +19,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         private string diretorio = @"C:\pgValidator";
 
+        private string diretorioResult = @"C:\pgValidator\Result";
+
         public Arquivo()
         {
 
@@ -36,12 +38,18 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             get { return diretorio; }
         }
 
+        public string DiretorioResult
+        {
+            get { return diretorioResult; }
+        }
+
         public void CriarPastaNoDiretorio(string diretorio)
         {
             if (!VerificaSeExistePastaNoDiretorio(Diretorio))
             {
                 Directory.CreateDirectory(Diretorio);
-                MessageBox.Show("Pasta criada com sucesso!");
+                Directory.CreateDirectory(DiretorioResult);
+                MessageBox.Show("Pastas criadas com sucesso!");
             }
         }
 
@@ -68,7 +76,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             try
             {
-                if (ValidaSeArquivoExisteNoDiretorio(nomeArquivo))
+                if (ValidaSeArquivoExisteNoDiretorio(nomeArquivo) && ValidarExtensaoDoArquivo(nomeArquivo))
                 {
                     using (Stream stm = objOpenFile.OpenFile())
                     using (StreamReader str = new StreamReader(stm))
@@ -105,17 +113,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return existeArquivo;
         }
 
-        public void VerificaSeArquivoEstaVazio()
-        {
-
-        }
-
-        public void VerificaSeArquivoEhNullo()
-        {
-
-        }
-
-        public bool VerificaExtensaoDoArquivo(string nomeArquivo)
+        private bool ValidarExtensaoDoArquivo(string nomeArquivo)
         {
             bool arquivoLog = true;
 
@@ -128,7 +126,41 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return arquivoLog;
         }
 
-        //Criar arquivo novo de resultado final.
-        //Inserir arquivo no mesmo diretório que baixou o outro arquivo de log.
+        public string RetornaExtensaoDoArquivo(string nomeArquivo)
+        {
+            string extensaoArquivo = string.Empty;
+
+            string[] spltNomeArquivo = nomeArquivo.Split('.');
+
+            if (ValidarExtensaoDoArquivo(nomeArquivo))
+            {
+                for (int i = 0; i < spltNomeArquivo.Length; i++)
+                {
+                    switch (spltNomeArquivo[i])
+                    {
+                        case "log":
+                            extensaoArquivo = spltNomeArquivo[i];
+                            break;
+                    }
+                }
+            }
+
+            return extensaoArquivo;
+        }
+
+        public string RetornaNomeDoArquivo(string nomeArquivo)
+        {
+            string rtnNmArquivo = string.Empty;
+            string[] nmSplt = nomeArquivo.Split('\\');
+
+            rtnNmArquivo = nmSplt[2];
+
+            return rtnNmArquivo;
+        }
+
+        private void CriarArquivoDeRetorno(List<string> resultList, string diretorio, string nomeArquivo)
+        {
+
+        }
     }
 }

@@ -23,7 +23,6 @@ namespace PaygoLogValidator
         {
             OpenFileDialog openFile = new OpenFileDialog();
             Arquivo arquivo = new Arquivo();
-
             arquivo.passos = new Passos();
 
             if (ckbCriarPasta.Checked)
@@ -33,8 +32,8 @@ namespace PaygoLogValidator
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                arquivo.nome = openFile.FileName;
-                arquivo.VerificaExtensaoDoArquivo(arquivo.nome);
+                arquivo.nome = arquivo.RetornaNomeDoArquivo(openFile.FileName);
+                arquivo.extensao = arquivo.RetornaExtensaoDoArquivo(arquivo.nome);
                 List<string> conteudoArquivo = arquivo.LerArquivo(arquivo.nome, arquivo.Diretorio, openFile);
                 arquivo.passos.conteudo = conteudoArquivo;
             }

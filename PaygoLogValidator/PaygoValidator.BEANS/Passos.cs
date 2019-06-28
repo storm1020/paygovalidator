@@ -31,8 +31,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public List<string> ValidarSePassoEhValido(List<string> conteudo)
         {
-            List<string> lstRetorno = conteudo;
-            
+            List<string> lstRetorno = conteudo;            
 
             return conteudo;
         }

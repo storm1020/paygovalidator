@@ -59,6 +59,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaygoValidator.BO\Interface\IArquivoBO.cs" />
+    <Compile Include="PaygoValidator.BO\Interface\IPassosBO.cs" />
     <Compile Include="PaygoValidator.BO\PassosBO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

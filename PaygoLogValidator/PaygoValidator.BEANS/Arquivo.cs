@@ -70,7 +70,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                         while (!string.IsNullOrEmpty(linha))
                         {
-                            
+                            //Metodo que aponta o objeto Passos..
                         }
                     }
 

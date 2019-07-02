@@ -18,7 +18,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public bool status { get; set; }
 
-        public bool obrigatoriedade { get; set; }
+        public bool opcional { get; set; }
 
         public Passos()
         {
@@ -32,6 +32,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.status = status;
             this.obrigatoriedade = obrigatorio;
         }
+
+
 
         //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).
         //Identificar a numeração do passo.

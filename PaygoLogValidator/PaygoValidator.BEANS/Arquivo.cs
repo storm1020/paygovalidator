@@ -9,7 +9,7 @@ using PaygoLogValidator.PaygoValidator.BO;
 
 namespace PaygoLogValidator.PaygoValidator.BEANS
 {
-    public class Arquivo
+    public class Arquivo : ArquivoBO, IArquivoBO
     {
         private IArquivoBO iArquivo = new ArquivoBO();
 
@@ -55,7 +55,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }        
 
-        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile)
+        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo)
         {
             List<string> arquivoRetorno = new List<string>();
 
@@ -71,6 +71,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                         while (!string.IsNullOrEmpty(linha))
                         {
                             //Metodo que aponta o objeto Passos..
+                            passos.RetornaIndiceDoPasso(linha, arquivo);
+
+                            linha = str.ReadLine();
                         }
                     }
 

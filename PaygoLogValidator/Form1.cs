@@ -20,7 +20,7 @@ namespace PaygoLogValidator
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {            
             OpenFileDialog openFile = new OpenFileDialog();
             Arquivo arquivo = new Arquivo();
             arquivo.passos = new Passos();
@@ -34,7 +34,7 @@ namespace PaygoLogValidator
             {
                 arquivo.nome = arquivo.RetornaNomeDoArquivo(openFile.FileName);
                 arquivo.extensao = arquivo.RetornaExtensaoDoArquivo(arquivo.nome);
-                List<string> conteudoArquivo = arquivo.LerArquivo(openFile.FileName, arquivo.Diretorio, openFile);
+                List<string> conteudoArquivo = arquivo.LerArquivo(openFile.FileName, arquivo.Diretorio, openFile, arquivo);
                 arquivo.passos.conteudo = conteudoArquivo;
             }
             else

@@ -34,16 +34,53 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        private string VerificaSeExistePassoNaLinha (string conteudoLinha)
+        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
         {
             string content = string.Empty;
 
             if (conteudoLinha.Contains("Passo"))
             {
-                content = conteudoLinha;
+                content = TrataLinhaParaRetornarApenasOhPasso(conteudoLinha);
             }
 
             return content;
+        }
+
+        private string TrataLinhaParaRetornarApenasOhPasso(string conteudoLinha)
+        {
+            string conteudoTratado = string.Empty;
+
+            if (!string.IsNullOrEmpty(conteudoLinha))
+            {
+                conteudoTratado = conteudoLinha.Substring(24, 8).Trim();
+            }
+
+            return conteudoTratado;
+        }
+
+        private bool ValidaIndiceDoMetodo(int indice)
+        {
+            bool ehMaiorQueZero = false;
+
+            if (indice > 0)
+            {
+                ehMaiorQueZero = true;
+            }
+
+            return ehMaiorQueZero;
+        }
+
+        private void VerificaSeTesteEhOpcionalOuNao()
+        {
+
+        }
+
+        private void TrataPassoPorIndice(Arquivo arquivo)
+        {
+            if (ValidaIndiceDoMetodo(arquivo.passos.indice))
+            {
+
+            }
         }
 
         public int RetornaIndiceDoPasso(string linha, Arquivo arquivo)

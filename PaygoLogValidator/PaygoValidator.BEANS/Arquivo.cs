@@ -19,6 +19,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public Passos passos { get; set; }
 
+        public TipoValidacao tipoValidacao { get; set; }
+
         private string diretorio = @"C:\pgValidator";
 
         private string diretorioResult = @"C:\pgValidator\Result";

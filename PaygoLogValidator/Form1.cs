@@ -30,6 +30,11 @@ namespace PaygoLogValidator
                 arquivo.CriarPastaNoDiretorio(arquivo.Diretorio);
             }
 
+            if (checkValidarDesconto.Checked)
+            {
+                arquivo.tipoValidacao = TipoValidacao.COM_DESCONTO;
+            }
+
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 arquivo.nome = arquivo.RetornaNomeDoArquivo(openFile.FileName);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.BoxMenu = new System.Windows.Forms.GroupBox();
+            this.checkEcf = new System.Windows.Forms.CheckBox();
             this.ckbCriarPasta = new System.Windows.Forms.CheckBox();
             this.checkValidarDesconto = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.BoxMenu.BackColor = System.Drawing.SystemColors.HotTrack;
             this.BoxMenu.BackgroundImage = global::PaygoLogValidator.Properties.Resources.Logo_Branco;
             this.BoxMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BoxMenu.Controls.Add(this.checkEcf);
             this.BoxMenu.Controls.Add(this.ckbCriarPasta);
             this.BoxMenu.Controls.Add(this.checkValidarDesconto);
             this.BoxMenu.Controls.Add(this.label1);
@@ -59,12 +61,25 @@
             this.BoxMenu.TabStop = false;
             this.BoxMenu.UseCompatibleTextRendering = true;
             // 
+            // checkEcf
+            // 
+            this.checkEcf.AutoSize = true;
+            this.checkEcf.Checked = true;
+            this.checkEcf.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkEcf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkEcf.Location = new System.Drawing.Point(166, 349);
+            this.checkEcf.Name = "checkEcf";
+            this.checkEcf.Size = new System.Drawing.Size(207, 29);
+            this.checkEcf.TabIndex = 3;
+            this.checkEcf.Text = "Validar com ECF";
+            this.checkEcf.UseVisualStyleBackColor = true;
+            // 
             // ckbCriarPasta
             // 
             this.ckbCriarPasta.AutoSize = true;
             this.ckbCriarPasta.BackColor = System.Drawing.Color.Transparent;
             this.ckbCriarPasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbCriarPasta.Location = new System.Drawing.Point(166, 259);
+            this.ckbCriarPasta.Location = new System.Drawing.Point(166, 278);
             this.ckbCriarPasta.Name = "ckbCriarPasta";
             this.ckbCriarPasta.Size = new System.Drawing.Size(149, 29);
             this.ckbCriarPasta.TabIndex = 1;
@@ -77,7 +92,7 @@
             this.checkValidarDesconto.Checked = true;
             this.checkValidarDesconto.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkValidarDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkValidarDesconto.Location = new System.Drawing.Point(166, 294);
+            this.checkValidarDesconto.Location = new System.Drawing.Point(166, 313);
             this.checkValidarDesconto.Name = "checkValidarDesconto";
             this.checkValidarDesconto.Size = new System.Drawing.Size(327, 29);
             this.checkValidarDesconto.TabIndex = 2;
@@ -107,7 +122,7 @@
             this.CapturarEhLerArquivo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CapturarEhLerArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CapturarEhLerArquivo.ForeColor = System.Drawing.Color.White;
-            this.CapturarEhLerArquivo.Location = new System.Drawing.Point(237, 169);
+            this.CapturarEhLerArquivo.Location = new System.Drawing.Point(237, 180);
             this.CapturarEhLerArquivo.Name = "CapturarEhLerArquivo";
             this.CapturarEhLerArquivo.Size = new System.Drawing.Size(276, 63);
             this.CapturarEhLerArquivo.TabIndex = 0;
@@ -138,6 +153,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ckbCriarPasta;
         private System.Windows.Forms.CheckBox checkValidarDesconto;
+        private System.Windows.Forms.CheckBox checkEcf;
     }
 }
 

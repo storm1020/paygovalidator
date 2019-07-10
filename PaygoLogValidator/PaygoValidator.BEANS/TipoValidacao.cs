@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PaygoLogValidator.PaygoValidator.BEANS
 {
-    public enum TipoValidacao
+    public enum TipoArquivo
     {
         SEM_ECF = 0,
         COM_ECF = 1,

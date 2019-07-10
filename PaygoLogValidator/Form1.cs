@@ -30,9 +30,10 @@ namespace PaygoLogValidator
                 arquivo.CriarPastaNoDiretorio(arquivo.Diretorio);
             }
 
-            if (checkValidarDesconto.Checked)
+            if (checkValidarDesconto.Checked && checkEcf.Checked)
             {
-                arquivo.tipoValidacao = TipoValidacao.COM_DESCONTO;
+                
+                //arquivo.tipoValidacao = TipoValidacao.COM_DESCONTO;
             }
 
             if (openFile.ShowDialog() == DialogResult.OK)

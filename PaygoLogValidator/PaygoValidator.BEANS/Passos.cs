@@ -70,14 +70,14 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return ehMaiorQueZero;
         }
 
-        private void VerificaSeTesteEhOpcionalOuNao()
+        private void VerificarObrigatoriedadeDosTestes()
         {
 
         }
 
-        private void TrataPassoPorIndice(Arquivo arquivo)
+        private void TrataPassoPorIndice(int indice)
         {
-            if (ValidaIndiceDoMetodo(arquivo.passos.indice))
+            if (ValidaIndiceDoMetodo(indice))
             {
 
             }

@@ -11,6 +11,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         SEM_ECF = 0,
         COM_ECF = 1,
         SEM_DESCONTO = 2,
-        COM_DESCONTO =3
+        COM_DESCONTO = 3
     }
 }

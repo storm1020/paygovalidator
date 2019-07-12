@@ -34,16 +34,16 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
+        private bool ValidaIndiceDoMetodo(int indice)
         {
-            string content = string.Empty;
+            bool ehMaiorQueZero = false;
 
-            if (conteudoLinha.Contains("Passo"))
+            if (indice > 0)
             {
-                content = TrataLinhaParaRetornarApenasOhPasso(conteudoLinha);
+                ehMaiorQueZero = true;
             }
 
-            return content;
+            return ehMaiorQueZero;
         }
 
         private string TrataLinhaParaRetornarApenasOhPasso(string conteudoLinha)
@@ -58,32 +58,19 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return conteudoTratado;
         }
 
-        private bool ValidaIndiceDoMetodo(int indice)
+        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
         {
-            bool ehMaiorQueZero = false;
+            string content = string.Empty;
 
-            if (indice > 0)
+            if (conteudoLinha.Contains("Passo"))
             {
-                ehMaiorQueZero = true;
+                content = TrataLinhaParaRetornarApenasOhPasso(conteudoLinha);
             }
 
-            return ehMaiorQueZero;
+            return content;
         }
 
-        private void VerificarObrigatoriedadeDosTestes()
-        {
-
-        }
-
-        private void TrataPassoPorIndice(int indice)
-        {
-            if (ValidaIndiceDoMetodo(indice))
-            {
-
-            }
-        }
-
-        public int RetornaIndiceDoPasso(string linha, Arquivo arquivo)
+        public int RetornaIndiceDoPasso(string linha)
         {
             int indice = 0;
 
@@ -92,232 +79,459 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             switch (passo)
             {
                 case "Passo 1:":
-                    arquivo.passos.indice = 1;
+                    indice = 1;
                     break;
 
                 case "Passo 2:":
-                    arquivo.passos.indice = 2;
+                    indice = 2;
                     break;
 
                 case "Passo 3:":
-                    arquivo.passos.indice = 3;
+                    indice = 3;
                     break;
 
                 case "Passo 4:":
-                    arquivo.passos.indice = 4;
+                    indice = 4;
                     break;
 
                 case "Passo 5:":
-                    arquivo.passos.indice = 5;
-                    break;
-
-                case "Passo 6:":
-                    arquivo.passos.indice = 6;
+                    indice = 5;
                     break;
 
                 case "Passo 7:":
-                    arquivo.passos.indice = 7;
+                    indice = 7;
                     break;
 
                 case "Passo 8":
-                    arquivo.passos.indice = 8;
+                    indice = 8;
                     break;
 
                 case "Passo 9":
-                    arquivo.passos.indice = 9;
+                    indice = 9;
                     break;
 
                 case "Passo 10":
-                    arquivo.passos.indice = 10;
+                    indice = 10;
                     break;
 
                 case "Passo 11":
-                    arquivo.passos.indice = 11;
+                    indice = 11;
                     break;
 
                 case "Passo 12":
-                    arquivo.passos.indice = 12;
+                    indice = 12;
                     break;
 
                 case "Passo 13":
-                    arquivo.passos.indice = 13;
+                    indice = 13;
                     break;
 
                 case "Passo 14":
-                    arquivo.passos.indice = 14;
+                    indice = 14;
                     break;
 
                 case "Passo 15":
-                    arquivo.passos.indice = 15;
+                    indice = 15;
                     break;
 
                 case "Passo 16":
-                    arquivo.passos.indice = 16;
+                    indice = 16;
                     break;
 
                 case "Passo 17":
-                    arquivo.passos.indice = 17;
+                    indice = 17;
                     break;
 
                 case "Passo 18":
-                    arquivo.passos.indice = 18;
+                    indice = 18;
                     break;
 
                 case "Passo 19":
-                    arquivo.passos.indice = 19;
+                    indice = 19;
                     break;
 
                 case "Passo 20":
-                    arquivo.passos.indice = 20;
+                    indice = 20;
                     break;
 
                 case "Passo 21":
-                    arquivo.passos.indice = 21;
+                    indice = 21;
                     break;
 
                 case "Passo 22":
-                    arquivo.passos.indice = 22;
+                    indice = 22;
                     break;
 
                 case "Passo 23":
-                    arquivo.passos.indice = 23;
+                    indice = 23;
                     break;
 
                 case "Passo 24":
-                    arquivo.passos.indice = 24;
+                    indice = 24;
                     break;
 
                 case "Passo 25":
-                    arquivo.passos.indice = 25;
+                    indice = 25;
                     break;
 
                 case "Passo 26":
-                    arquivo.passos.indice = 26;
+                    indice = 26;
                     break;
 
                 case "Passo 27":
-                    arquivo.passos.indice = 27;
+                    indice = 27;
                     break;
 
                 case "Passo 28":
-                    arquivo.passos.indice = 28;
+                    indice = 28;
                     break;
 
                 case "Passo 29":
-                    arquivo.passos.indice = 29;
+                    indice = 29;
                     break;
 
                 case "Passo 30":
-                    arquivo.passos.indice = 30;
-                    break;
-
-                case "Passo 31":
-                    arquivo.passos.indice = 31;
+                    indice = 30;
                     break;
 
                 case "Passo 32":
-                    arquivo.passos.indice = 32;
+                    indice = 32;
                     break;
 
                 case "Passo 33":
-                    arquivo.passos.indice = 33;
+                    indice = 33;
                     break;
 
                 case "Passo 34":
-                    arquivo.passos.indice = 34;
+                    indice = 34;
                     break;
 
                 case "Passo 35":
-                    arquivo.passos.indice = 35;
+                    indice = 35;
                     break;
 
                 case "Passo 36":
-                    arquivo.passos.indice = 36;
+                    indice = 36;
                     break;
 
                 case "Passo 37":
-                    arquivo.passos.indice = 37;
+                    indice = 37;
                     break;
 
                 case "Passo 38":
-                    arquivo.passos.indice = 38;
+                    indice = 38;
                     break;
 
                 case "Passo 39":
-                    arquivo.passos.indice = 39;
+                    indice = 39;
                     break;
 
                 case "Passo 40":
-                    arquivo.passos.indice = 40;
+                    indice = 40;
                     break;
 
                 case "Passo 41":
-                    arquivo.passos.indice = 41;
+                    indice = 41;
                     break;
 
                 case "Passo 42":
-                    arquivo.passos.indice = 42;
+                    indice = 42;
                     break;
 
                 case "Passo 43":
-                    arquivo.passos.indice = 43;
+                    indice = 43;
                     break;
 
                 case "Passo 44":
-                    arquivo.passos.indice = 44;
-                    break;
-
-                case "Passo 45":
-                    arquivo.passos.indice = 45;
+                    indice = 44;
                     break;
 
                 case "Passo 46":
-                    arquivo.passos.indice = 46;
+                    indice = 46;
                     break;
 
                 case "Passo 47":
-                    arquivo.passos.indice = 47;
+                    indice = 47;
                     break;
 
                 case "Passo 48":
-                    arquivo.passos.indice = 48;
+                    indice = 48;
                     break;
 
                 case "Passo 49":
-                    arquivo.passos.indice = 49;
+                    indice = 49;
                     break;
 
                 case "Passo 50":
-                    arquivo.passos.indice = 50;
+                    indice = 50;
                     break;
 
                 case "Passo 51":
-                    arquivo.passos.indice = 51;
+                    indice = 51;
                     break;
 
                 case "Passo 52":
-                    arquivo.passos.indice = 52;
+                    indice = 52;
                     break;
 
                 case "Passo 53":
-                    arquivo.passos.indice = 53;
+                    indice = 53;
                     break;
 
                 case "Passo 54":
-                    arquivo.passos.indice = 54;
+                    indice = 54;
                     break;
 
                 case "Passo 55":
-                    arquivo.passos.indice = 55;
+                    indice = 55;
                     break;
             }
 
             return indice;
         }
 
+        private bool InserirObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
+        {
+            bool opcional = false;
+
+
+
+            return opcional;
+        }
+
+        public bool VerificaObrigatoriedadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
+        {
+            bool opcional = false;
+
+            switch (indicePasso)
+            {
+                case 1:
+                    opcional = false;
+                    break;
+
+                case 2:
+                    opcional = true;
+                    break;
+
+                case 3:
+                    opcional = true;
+                    break;
+
+                case 4:
+                    opcional = true;
+                    break;
+
+
+                case 5:
+                    opcional = false;
+                    break;
+
+                case 7:
+                    opcional = false;
+                    break;
+
+                case 8:
+                    opcional = false;
+                    break;
+
+                case 9:
+                    opcional = false;
+                    break;
+
+                case 10:
+                    opcional = false;
+                    break;
+
+                case 11:
+                    opcional = false;
+                    break;
+                
+                case 12:
+                    opcional = false;
+                    break;
+                
+                //Validar tipo de arquivo, teste de SAQUE - Desconto..
+                case 13:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+                
+                //Validar tipo de arquivo, teste de DESCONTO.
+                case 14:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+                
+                //Validar tipo de arquivo, teste de DESCONTO.
+                case 15:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+                
+                //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
+                case 16:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
+                case 17:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 18:
+                    opcional = false;
+                    break;
+
+                case 19:
+                    opcional = false;
+                    break;
+                
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 20:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 21:
+                    opcional = false;
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 22:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 23:
+                    opcional = false;
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 24:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 25:
+                    opcional = false;
+                    break;
+
+                case 26:
+                    opcional = false;
+                    break;
+
+                case 27:
+                    opcional = false;
+                    break;
+
+                case 28:
+                    opcional = false;
+                    break;
+
+                case 29:
+                    opcional = false;
+                    break;
+
+                case 30:
+                    opcional = true;
+                    break;
+
+                case 32:
+                    opcional = false;
+                    break;
+
+                case 33:
+                    opcional = false;
+                    break;
+
+                case 34:
+                    opcional = false;
+                    break;
+
+                case 35:
+                    opcional = false;
+                    break;
+
+                case 36:
+                    opcional = false;
+                    break;
+
+                case 37:
+                    opcional = false;
+                    break;
+
+                case 38:
+                    opcional = false;
+                    break;
+
+                case 39:
+                    opcional = false;
+                    break;
+
+                case 40:
+                    opcional = false;
+                    break;
+
+                case 41:
+                    opcional = false;
+                    break;
+
+                case 42:
+                    opcional = false;
+                    break;
+
+                case 43:
+                    opcional = false;
+                    break;
+
+                case 44:
+                    opcional = false;
+                    break;
+
+                case 46:
+                    opcional = false;
+                    break;
+
+                case 47:
+                    opcional = false;
+                    break;
+
+                case 48:
+                    opcional = false;
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 49:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 50:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 51:
+                    opcional = false;
+                    break;
+
+                case 52:
+                    opcional = false;
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 53:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                //Validar tipo de arquivo, só se utilizar ECF.
+                case 54:
+                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    break;
+
+                case 55:
+                    opcional = false;
+                    break;
+
+            }
+
+            return opcional;
+        }
+
         //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).
-        //Identificar a numeração do passo.
-        //Verificar se o conteudo da leitura é valido.
         //Adicionar a lista de conteudo.
         //Validar se existe a mensagem de teste Ok, ou seja, validar o Status do teste.
 

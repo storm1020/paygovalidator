@@ -74,7 +74,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                         {
                             //Metodo que aponta o objeto Passos..
                             arquivo.passos.indice = passos.RetornaIndiceDoPasso(linha);
-                            //arquivo.passos.opcional = passos.VerificaObrigatoriedadeDoPasso(arquivo.tipoArquivo, arquivo.passos.indice);
+                            arquivo.passos.opcional = passos.VerificaObrigatoriedadeDoPasso(arquivo.passos.indice, arquivo.tipoArquivo);
 
 
                             linha = str.ReadLine();

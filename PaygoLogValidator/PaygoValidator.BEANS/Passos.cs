@@ -294,6 +294,37 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
             bool opcional = false;
 
+            bool cDesconto = false;
+            //bool cEcf = ValidacaoComDesconto(tipoArquivo);
+
+            switch (indice)
+            {
+                case 13:
+                    cDesconto = ValidacaoComDesconto(tipoArquivo);
+                    if (cDesconto) { opcional = false;  } else { opcional = true; }
+
+                    break;
+
+                case 14:
+                    cDesconto = ValidacaoComEcf(tipoArquivo);
+                    if (cDesconto) opcional = false;
+                    break;
+
+                case 15:
+                    cDesconto = ValidacaoComEcf(tipoArquivo);
+                    if (cDesconto) opcional = false;
+                    break;
+
+                case 16:
+                    cDesconto = ValidacaoComEcf(tipoArquivo);
+                    if (cDesconto) opcional = false;
+                    break;
+
+                case 17:
+                    cDesconto = ValidacaoComEcf(tipoArquivo);
+                    if (cDesconto) opcional = false;
+                    break;
+            }
 
 
             return opcional;
@@ -345,26 +376,26 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                 case 11:
                     opcional = false;
                     break;
-                
+
                 case 12:
                     opcional = false;
                     break;
-                
+
                 //Validar tipo de arquivo, teste de SAQUE - Desconto..
                 case 13:
                     opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
-                
+
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 14:
                     opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
-                
+
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 15:
                     opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
-                
+
                 //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
                 case 16:
                     opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
@@ -382,7 +413,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                 case 19:
                     opcional = false;
                     break;
-                
+
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 20:
                     opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
@@ -529,6 +560,40 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
 
             return opcional;
+        }
+
+        private bool ValidacaoComDesconto(TipoArquivo[] tipoArquivo)
+        {
+            string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
+            bool validarComDesconto = false;
+
+            foreach (var strTipoArquivo in tipoArquivo)
+            {
+                string vlTipoArquivo = strTipoArquivo.ToString();
+                if (vlTipoArquivo.Contains(vlComDesconto))
+                {
+                    validarComDesconto = true;
+                }
+            }
+
+            return validarComDesconto;
+        }
+
+        private bool ValidacaoComEcf(TipoArquivo[] tipoArquivo)
+        {
+            string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
+            bool validarComEcf = false;
+
+            foreach (var strTipoArquivo in tipoArquivo)
+            {
+                string vlTipoArquivo = strTipoArquivo.ToString();
+                if (vlTipoArquivo.Contains(vlComEcf))
+                {
+                    validarComEcf = true;
+                }
+            }
+
+            return validarComEcf;
         }
 
         //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).

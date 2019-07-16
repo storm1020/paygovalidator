@@ -34,42 +34,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        //private bool ValidaIndiceDoMetodo(int indice)
-        //{
-        //    bool ehMaiorQueZero = false;
-
-        //    if (indice > 0)
-        //    {
-        //        ehMaiorQueZero = true;
-        //    }
-
-        //    return ehMaiorQueZero;
-        //}
-
-        //private string RetornaApenasOhPasso(string conteudoLinha)
-        //{
-        //    string conteudoTratado = string.Empty;
-
-        //    if (!string.IsNullOrEmpty(conteudoLinha))
-        //    {
-        //        conteudoTratado = conteudoLinha.Substring(24, 8).Trim();
-        //    }
-
-        //    return conteudoTratado;
-        //}
-
-        //private string VerificaSeExistePassoNaLinha(string conteudoLinha)
-        //{
-        //    string content = string.Empty;
-
-        //    if (conteudoLinha.Contains("Passo"))
-        //    {
-        //        content = RetornaApenasOhPasso(conteudoLinha);
-        //    }
-
-        //    return content;
-        //}
-
         public int RetornaIndiceDoPasso(string linha)
         {
             int indice = 0;
@@ -580,60 +544,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             return opcional;
         }
-
-        //private bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
-        //{
-        //    bool opcional = false;
-
-        //    if (rst)
-        //    {
-        //        opcional = false;
-        //    }
-        //    else
-        //    {
-        //        opcional = true;
-        //    }
-
-        //    return opcional;
-        //}
-
-        //private bool RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo)
-        //{
-        //    string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
-        //    bool validarComDesconto = false;
-
-        //    foreach (var strTipoArquivo in tipoArquivo)
-        //    {
-        //        string vlTipoArquivo = strTipoArquivo.ToString();
-        //        if (vlTipoArquivo.Contains(vlComDesconto))
-        //        {
-        //            validarComDesconto = true;
-        //        }
-        //    }
-
-        //    return validarComDesconto;
-        //}
-
-        //private bool RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo)
-        //{
-        //    string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
-        //    bool validarComEcf = false;
-
-        //    foreach (var strTipoArquivo in tipoArquivo)
-        //    {
-        //        string vlTipoArquivo = strTipoArquivo.ToString();
-        //        if (vlTipoArquivo.Contains(vlComEcf))
-        //        {
-        //            validarComEcf = true;
-        //        }
-        //    }
-
-        //    return validarComEcf;
-        //}
-
-        //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).
-        //Adicionar a lista de conteudo.
-        //Validar se existe a mensagem de teste Ok, ou seja, validar o Status do teste.
 
     }
 }

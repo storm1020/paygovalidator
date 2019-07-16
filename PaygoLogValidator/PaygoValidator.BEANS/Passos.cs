@@ -34,47 +34,47 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        private bool ValidaIndiceDoMetodo(int indice)
-        {
-            bool ehMaiorQueZero = false;
+        //private bool ValidaIndiceDoMetodo(int indice)
+        //{
+        //    bool ehMaiorQueZero = false;
 
-            if (indice > 0)
-            {
-                ehMaiorQueZero = true;
-            }
+        //    if (indice > 0)
+        //    {
+        //        ehMaiorQueZero = true;
+        //    }
 
-            return ehMaiorQueZero;
-        }
+        //    return ehMaiorQueZero;
+        //}
 
-        private string TrataLinhaParaRetornarApenasOhPasso(string conteudoLinha)
-        {
-            string conteudoTratado = string.Empty;
+        //private string RetornaApenasOhPasso(string conteudoLinha)
+        //{
+        //    string conteudoTratado = string.Empty;
 
-            if (!string.IsNullOrEmpty(conteudoLinha))
-            {
-                conteudoTratado = conteudoLinha.Substring(24, 8).Trim();
-            }
+        //    if (!string.IsNullOrEmpty(conteudoLinha))
+        //    {
+        //        conteudoTratado = conteudoLinha.Substring(24, 8).Trim();
+        //    }
 
-            return conteudoTratado;
-        }
+        //    return conteudoTratado;
+        //}
 
-        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
-        {
-            string content = string.Empty;
+        //private string VerificaSeExistePassoNaLinha(string conteudoLinha)
+        //{
+        //    string content = string.Empty;
 
-            if (conteudoLinha.Contains("Passo"))
-            {
-                content = TrataLinhaParaRetornarApenasOhPasso(conteudoLinha);
-            }
+        //    if (conteudoLinha.Contains("Passo"))
+        //    {
+        //        content = RetornaApenasOhPasso(conteudoLinha);
+        //    }
 
-            return content;
-        }
+        //    return content;
+        //}
 
         public int RetornaIndiceDoPasso(string linha)
         {
             int indice = 0;
 
-            string passo = VerificaSeExistePassoNaLinha(linha);
+            string passo = iPassos.VerificaSeExistePassoNaLinha(linha);
 
             switch (passo)
             {
@@ -290,33 +290,61 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        private bool InserirObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
+        public bool InserirObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
         {
             bool opcional = false;
 
             switch (indice)
             {
                 case 13:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
                     break;
 
                 case 14:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
                     break;
 
                 case 15:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
                     break;
 
                 case 16:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
                     break;
 
                 case 17:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
                     break;
-            }
 
+                case 20:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 22:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 24:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 49:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 50:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 53:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 54:
+                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+            }
 
             return opcional;
         }
@@ -553,55 +581,55 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        private bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
-        {
-            bool opcional = false;
+        //private bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
+        //{
+        //    bool opcional = false;
 
-            if (rst)
-            {
-                opcional = false;
-            }
-            else
-            {
-                opcional = true;
-            }
+        //    if (rst)
+        //    {
+        //        opcional = false;
+        //    }
+        //    else
+        //    {
+        //        opcional = true;
+        //    }
 
-            return opcional;
-        }
+        //    return opcional;
+        //}
 
-        private bool ValidacaoComDesconto(TipoArquivo[] tipoArquivo)
-        {
-            string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
-            bool validarComDesconto = false;
+        //private bool RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo)
+        //{
+        //    string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
+        //    bool validarComDesconto = false;
 
-            foreach (var strTipoArquivo in tipoArquivo)
-            {
-                string vlTipoArquivo = strTipoArquivo.ToString();
-                if (vlTipoArquivo.Contains(vlComDesconto))
-                {
-                    validarComDesconto = true;
-                }
-            }
+        //    foreach (var strTipoArquivo in tipoArquivo)
+        //    {
+        //        string vlTipoArquivo = strTipoArquivo.ToString();
+        //        if (vlTipoArquivo.Contains(vlComDesconto))
+        //        {
+        //            validarComDesconto = true;
+        //        }
+        //    }
 
-            return validarComDesconto;
-        }
+        //    return validarComDesconto;
+        //}
 
-        private bool ValidacaoComEcf(TipoArquivo[] tipoArquivo)
-        {
-            string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
-            bool validarComEcf = false;
+        //private bool RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo)
+        //{
+        //    string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
+        //    bool validarComEcf = false;
 
-            foreach (var strTipoArquivo in tipoArquivo)
-            {
-                string vlTipoArquivo = strTipoArquivo.ToString();
-                if (vlTipoArquivo.Contains(vlComEcf))
-                {
-                    validarComEcf = true;
-                }
-            }
+        //    foreach (var strTipoArquivo in tipoArquivo)
+        //    {
+        //        string vlTipoArquivo = strTipoArquivo.ToString();
+        //        if (vlTipoArquivo.Contains(vlComEcf))
+        //        {
+        //            validarComEcf = true;
+        //        }
+        //    }
 
-            return validarComEcf;
-        }
+        //    return validarComEcf;
+        //}
 
         //Entender se é obrigatório ou não (mapiar de alguma forma a obrigatoriedade do passo utilizando um enum ou algo que possa inserir um valor e uma nomenclatura).
         //Adicionar a lista de conteudo.

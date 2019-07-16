@@ -294,35 +294,26 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
             bool opcional = false;
 
-            bool cDesconto = false;
-            //bool cEcf = ValidacaoComDesconto(tipoArquivo);
-
             switch (indice)
             {
                 case 13:
-                    cDesconto = ValidacaoComDesconto(tipoArquivo);
-                    if (cDesconto) { opcional = false;  } else { opcional = true; }
-
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
                     break;
 
                 case 14:
-                    cDesconto = ValidacaoComEcf(tipoArquivo);
-                    if (cDesconto) opcional = false;
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
                     break;
 
                 case 15:
-                    cDesconto = ValidacaoComEcf(tipoArquivo);
-                    if (cDesconto) opcional = false;
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
                     break;
 
                 case 16:
-                    cDesconto = ValidacaoComEcf(tipoArquivo);
-                    if (cDesconto) opcional = false;
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
                     break;
 
                 case 17:
-                    cDesconto = ValidacaoComEcf(tipoArquivo);
-                    if (cDesconto) opcional = false;
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(ValidacaoComDesconto(tipoArquivo));
                     break;
             }
 
@@ -557,6 +548,22 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                     opcional = false;
                     break;
 
+            }
+
+            return opcional;
+        }
+
+        private bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
+        {
+            bool opcional = false;
+
+            if (rst)
+            {
+                opcional = false;
+            }
+            else
+            {
+                opcional = true;
             }
 
             return opcional;

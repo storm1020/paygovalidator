@@ -13,13 +13,13 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
     {
         private IArquivoBO iArquivo = new ArquivoBO();
 
-        public string nome { get; set; }
+        public string Nome { get; set; }
 
-        public string extensao { get; set; }
+        public string Extensao { get; set; }
 
-        public Passos passos { get; set; }
+        public Passos Passos { get; set; }
 
-        public TipoArquivo[] tipoArquivo { get; set; }
+        public TipoArquivo[] TipoArquivo { get; set; }
 
         private string diretorio = @"C:\pgValidator";
 
@@ -32,9 +32,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public Arquivo(string nome, string extensao, Passos passos)
         {
-            this.nome = nome;
-            this.extensao = extensao;
-            this.passos = passos;
+            this.Nome = nome;
+            this.Extensao = extensao;
+            this.Passos = passos;
         }
 
         public string Diretorio
@@ -55,9 +55,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                 Directory.CreateDirectory(DiretorioResult);
                 MessageBox.Show("Pastas criadas com sucesso!");
             }
-        }        
+        }
 
-        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo)
+        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
         {
             List<string> arquivoRetorno = new List<string>();
 
@@ -72,10 +72,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                         while (!string.IsNullOrEmpty(linha))
                         {
-                            //Metodo que aponta o objeto Passos..
-                            arquivo.passos.indice = passos.RetornaIndiceDoPasso(linha);
-                            arquivo.passos.opcional = passos.VerificaObrigatoriedadeDoPasso(arquivo.passos.indice, arquivo.tipoArquivo);
-
+                            passos.indice = passos.RetornaIndiceDoPasso(linha);
+                            passos.opcional = passos.RetornaObrigatoriedadeDoPasso(passos.indice, arquivo.TipoArquivo);
 
                             linha = str.ReadLine();
                         }

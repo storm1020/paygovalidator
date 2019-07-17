@@ -17,13 +17,72 @@ namespace PaygoLogValidator.PaygoValidator.BO
 
             if (conteudoLinha.Contains("Passo"))
             {
-                content = RetornaApenasOhPasso(conteudoLinha);
+                content = RetornaApenasDescricaoDaLinhaDoPasso(conteudoLinha);
             }
 
             return content;
         }
 
-        bool IPassosBO.ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
+        bool IPassosBO.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
+        {
+            bool opcional = false;
+
+            switch (indice)
+            {
+                case 13:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    break;
+
+                case 14:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    break;
+
+                case 15:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    break;
+
+                case 16:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    break;
+
+                case 17:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    break;
+
+                case 20:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 22:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 24:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 49:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 50:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 53:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+                case 54:
+                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    break;
+
+            }
+
+            return opcional;
+        }
+
+        private static bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
         {
             bool opcional = false;
 
@@ -39,7 +98,7 @@ namespace PaygoLogValidator.PaygoValidator.BO
             return opcional;
         }
 
-        bool IPassosBO.RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo)
+        private static bool RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo)
         {
             string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
             bool validarComDesconto = false;
@@ -56,7 +115,7 @@ namespace PaygoLogValidator.PaygoValidator.BO
             return validarComDesconto;
         }
 
-        bool IPassosBO.RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo)
+        private static bool RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo)
         {
             string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
             bool validarComEcf = false;
@@ -73,7 +132,7 @@ namespace PaygoLogValidator.PaygoValidator.BO
             return validarComEcf;
         }
 
-        private static string RetornaApenasOhPasso(string conteudoLinha)
+        private static string RetornaApenasDescricaoDaLinhaDoPasso(string conteudoLinha)
         {
             string conteudoTratado = string.Empty;
 

@@ -36,8 +36,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public int RetornaIndiceDoPasso(string linha)
         {
-            int indice = 0;
-
             string passo = iPassos.VerificaSeExistePassoNaLinha(linha);
 
             switch (passo)
@@ -254,66 +252,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        public bool InserirObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
-        {
-            bool opcional = false;
-
-            switch (indice)
-            {
-                case 13:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
-                    break;
-
-                case 14:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
-                    break;
-
-                case 15:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
-                    break;
-
-                case 16:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
-                    break;
-
-                case 17:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComDesconto(tipoArquivo));
-                    break;
-
-                case 20:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 22:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 24:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 49:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 50:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 53:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-                case 54:
-                    opcional = iPassos.ValidaOpcionalidadeDoTesteAposAtribuicao(iPassos.RetornarTipoDeArquivoComEcf(tipoArquivo));
-                    break;
-
-            }
-
-            return opcional;
-        }
-
-        public bool VerificaObrigatoriedadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
+        public bool RetornaObrigatoriedadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
         {
             bool opcional = false;
 
@@ -366,27 +305,27 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, teste de SAQUE - Desconto..
                 case 13:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 14:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 15:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
                 case 16:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
                 case 17:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 18:
@@ -399,7 +338,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 20:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 21:
@@ -408,7 +347,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 22:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 23:
@@ -417,7 +356,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 24:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 25:
@@ -510,12 +449,12 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 49:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 50:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 51:
@@ -528,12 +467,12 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 53:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 54:
-                    opcional = InserirObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = iPassos.VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 55:
@@ -543,6 +482,80 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
 
             return opcional;
+        }
+
+        public List<string> RetornaConteudoDoPasso(string linha, int indice)
+        {
+            List<string> conteudo = new List<string>();
+
+            while (RetornaIndiceDoPasso(linha) != indice)
+            {
+                conteudo.Add(linha);
+            }
+
+            return conteudo;
+        }
+
+        private bool VerificaSeExisteMensagemPassoOk(string conteudoLinha)
+        {
+            bool passoOk = false;
+
+            string conteudoLinhaTratado = RetornaApenasMensagemDeStatus(conteudoLinha);
+
+            if (conteudoLinhaTratado.Contains("Passo OK"))
+            {
+                passoOk = true;
+            }
+
+            return passoOk;
+        }
+
+        private bool VerificaSeExisteMensagemPassoComErro(string conteudoLinha)
+        {
+            bool passoComErro = false;
+
+            string conteudoLinhaTratado = RetornaApenasMensagemDeStatus(conteudoLinha);
+
+            if (conteudoLinhaTratado.Contains("Passo com erro"))
+            {
+                passoComErro = true;
+            }
+
+            return passoComErro;
+        }
+
+        private string RetornaApenasMensagemDeStatus(string conteudoLinha)
+        {
+            string conteudoTratado = string.Empty;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(conteudoLinha))
+                {
+                    conteudoTratado = conteudoLinha.Substring(24, 8).Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", "Houve um erro ao tentar tratar o conteudo de uma linha, verifique a mensagem", ex.Message.ToString()));
+
+                throw;
+            }
+
+            return conteudoTratado;
+
+        }
+
+        private bool VerificaSeIndiceEhMaiorQueZero(int indice)
+        {
+            bool indiceValido = false;
+
+            if (indice > 0)
+            {
+                indiceValido = true;
+            }
+
+            return indiceValido;
         }
 
     }

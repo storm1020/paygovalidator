@@ -25,22 +25,22 @@ namespace PaygoLogValidator
             if (checkValidarDesconto.Checked && checkEcf.Checked)
             {
                 TipoArquivo[] comDescontoEhEcf = { TipoArquivo.COM_DESCONTO, TipoArquivo.COM_ECF };
-                arquivo.tipoArquivo = comDescontoEhEcf;
+                arquivo.TipoArquivo = comDescontoEhEcf;
             }
             else if (checkEcf.Checked && !checkValidarDesconto.Checked)
             {
                 TipoArquivo[] apenasEcf = { TipoArquivo.COM_ECF, TipoArquivo.SEM_DESCONTO };
-                arquivo.tipoArquivo = apenasEcf;
+                arquivo.TipoArquivo = apenasEcf;
             }
             else if (!checkEcf.Checked && checkValidarDesconto.Checked)
             {
                 TipoArquivo[] apenasDesconto = { TipoArquivo.SEM_ECF, TipoArquivo.COM_DESCONTO };
-                arquivo.tipoArquivo = apenasDesconto;
+                arquivo.TipoArquivo = apenasDesconto;
             }
             else
             {
                 TipoArquivo[] semDescontoEhEcf = { TipoArquivo.SEM_DESCONTO, TipoArquivo.SEM_ECF };
-                arquivo.tipoArquivo = semDescontoEhEcf;
+                arquivo.TipoArquivo = semDescontoEhEcf;
             }
 
             return arquivo;
@@ -49,22 +49,23 @@ namespace PaygoLogValidator
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            Arquivo arquivo = new Arquivo();
-            arquivo.passos = new Passos();
+
+            Arquivo objArquivo = new Arquivo();
+            Passos objPassos = new Passos();
 
             if (ckbCriarPasta.Checked)
             {
-                arquivo.CriarPastaNoDiretorio(arquivo.Diretorio);
+                objArquivo.CriarPastaNoDiretorio(objArquivo.Diretorio);
             }
 
-            arquivo = DefineTipoDeValidacao(arquivo);
+            objArquivo = DefineTipoDeValidacao(objArquivo);
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                arquivo.nome = arquivo.RetornaNomeDoArquivo(openFile.FileName);
-                arquivo.extensao = arquivo.RetornaExtensaoDoArquivo(arquivo.nome);
-                List<string> conteudoArquivo = arquivo.LerArquivo(openFile.FileName, arquivo.Diretorio, openFile, arquivo);
-                arquivo.passos.conteudo = conteudoArquivo;
+                string nomeArquivo = objArquivo.RetornaNomeDoArquivo(openFile.FileName);
+                string extensaoArquivo = objArquivo.RetornaExtensaoDoArquivo(nomeArquivo);
+                List<string> conteudoArquivo = objArquivo.LerArquivo(openFile.FileName, objArquivo.Diretorio, openFile, objArquivo, objPassos);
+                objArquivo.Passos.conteudo = conteudoArquivo;
             }
             else
             {

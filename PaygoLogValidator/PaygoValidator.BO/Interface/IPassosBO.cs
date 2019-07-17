@@ -11,10 +11,6 @@ namespace PaygoLogValidator.PaygoValidator.BO.Interface
     {
         string VerificaSeExistePassoNaLinha(string conteudoLinha);
 
-        bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool resultadoAtribuido);
-
-        bool RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo);
-
-        bool RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo);
+        bool VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice);
     }
 }

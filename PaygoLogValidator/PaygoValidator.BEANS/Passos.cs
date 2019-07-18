@@ -500,7 +500,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
             bool passoOk = false;
 
-            string conteudoLinhaTratado = RetornaApenasMensagemDeStatus(conteudoLinha);
+            string conteudoLinhaTratado = RetornaConteudoQuePodeConterStatusDeFalhaOuSucesso(conteudoLinha);
 
             if (conteudoLinhaTratado.Contains("Passo OK"))
             {
@@ -514,7 +514,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         {
             bool passoComErro = false;
 
-            string conteudoLinhaTratado = RetornaApenasMensagemDeStatus(conteudoLinha);
+            string conteudoLinhaTratado = RetornaConteudoQuePodeConterStatusDeFalhaOuSucesso(conteudoLinha);
 
             if (conteudoLinhaTratado.Contains("Passo com erro"))
             {
@@ -524,7 +524,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return passoComErro;
         }
 
-        private string RetornaApenasMensagemDeStatus(string conteudoLinha)
+        private string RetornaConteudoQuePodeConterStatusDeFalhaOuSucesso(string conteudoLinha)
         {
             string conteudoTratado = string.Empty;
 

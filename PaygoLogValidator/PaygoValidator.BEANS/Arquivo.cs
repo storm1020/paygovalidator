@@ -57,9 +57,14 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }
 
-        public List<string> LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
+        //public List<string> RetornaConteudoArquivo(string pathArquivo, )
+        //{
+        //    List<string> conteudoArquivo = new List<string>();
+        //}
+
+        public string LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
         {
-            List<string> arquivoRetorno = new List<string>();
+            string conteudoAtual = string.Empty;
 
             try
             {
@@ -68,15 +73,10 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                     using (Stream stm = objOpenFile.OpenFile())
                     using (StreamReader str = new StreamReader(stm))
                     {
-                        var linha = str.ReadLine();
+                        conteudoAtual = str.ReadLine();
 
-                        while (!string.IsNullOrEmpty(linha))
-                        {
-                            passos.indice = passos.RetornaIndiceDoPasso(linha);
-                            passos.opcional = passos.RetornaObrigatoriedadeDoPasso(passos.indice, arquivo.TipoArquivo);
 
-                            linha = str.ReadLine();
-                        }
+
                     }
 
                     MessageBox.Show("Leitura finalizada!");
@@ -87,7 +87,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                 MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
             }
 
-            return arquivoRetorno;
+            return conteudoAtual;
+
         }
 
         public string RetornaExtensaoDoArquivo(string nomeArquivo)

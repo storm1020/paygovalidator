@@ -62,6 +62,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         //    List<string> conteudoArquivo = new List<string>();
         //}
 
+            //oi
+
         public string LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
         {
             string conteudoAtual = string.Empty;

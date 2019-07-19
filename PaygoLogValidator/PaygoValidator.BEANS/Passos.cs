@@ -255,13 +255,13 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             if (conteudoLinha.Contains("Passo"))
             {
-                content = RetornaApenasDescricaoDaLinhaDoPasso(conteudoLinha);
+                content = RetornaConteudoDaLinhaAtual(conteudoLinha);
             }
 
             return content;
         }
 
-        public string RetornaApenasDescricaoDaLinhaDoPasso(string conteudoLinha)
+        public string RetornaConteudoDaLinhaAtual(string conteudoLinha)
         {
             string conteudoTratado = string.Empty;
 
@@ -283,7 +283,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         }
 
-        public bool RetornaObrigatoriedadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
+        public bool RetornaOpcionalidadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
         {
             bool opcional = false;
 
@@ -336,27 +336,27 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, teste de SAQUE - Desconto..
                 case 13:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 14:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de DESCONTO.
                 case 15:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
                 case 16:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, teste de valor REAJUSTADO - Desconto..
                 case 17:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 18:
@@ -369,7 +369,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 20:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 21:
@@ -378,7 +378,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 22:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 23:
@@ -387,7 +387,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 24:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 25:
@@ -480,12 +480,12 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 49:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 50:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 51:
@@ -498,12 +498,12 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 53:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 //Validar tipo de arquivo, só se utilizar ECF.
                 case 54:
-                    opcional = VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
+                    opcional = InsereOpcionalidadeDeAcordoComTipoDeArquivo(tipoArquivo, indicePasso);
                     break;
 
                 case 55:
@@ -515,58 +515,58 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
+        public bool InsereOpcionalidadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
         {
             bool opcional = false;
 
             switch (indice)
             {
                 case 13:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
                     break;
 
                 case 14:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
                     break;
 
                 case 15:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
                     break;
 
                 case 16:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
                     break;
 
                 case 17:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
                     break;
 
                 case 20:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 22:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 24:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 49:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 50:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 53:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
                 case 54:
-                    opcional = ValidaOpcionalidadeDoTesteAposAtribuicao(RetornarTipoDeArquivoComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
                     break;
 
             }
@@ -574,7 +574,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool ValidaOpcionalidadeDoTesteAposAtribuicao(bool rst)
+        public bool DefineOpcionalidade(bool rst)
         {
             bool opcional = false;
 
@@ -590,7 +590,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool RetornarTipoDeArquivoComDesconto(TipoArquivo[] tipoArquivo)
+        public bool ValidarComDesconto(TipoArquivo[] tipoArquivo)
         {
             string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
             bool validarComDesconto = false;
@@ -607,7 +607,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return validarComDesconto;
         }
 
-        public bool RetornarTipoDeArquivoComEcf(TipoArquivo[] tipoArquivo)
+        public bool ValidarComEcf(TipoArquivo[] tipoArquivo)
         {
             string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
             bool validarComEcf = false;

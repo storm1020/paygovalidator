@@ -14,15 +14,11 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         private IArquivoBO iArquivo = new ArquivoBO();
 
         public string Nome { get; set; }
-
         public string Extensao { get; set; }
-
         public Passos Passos { get; set; }
-
         public TipoArquivo[] TipoArquivo { get; set; }
-
+        public List<string> ConteudoArquivo { get; set; }
         private string diretorio = @"C:\pgValidator";
-
         private string diretorioResult = @"C:\pgValidator\Result";
 
         public Arquivo()
@@ -30,11 +26,13 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         }
 
-        public Arquivo(string nome, string extensao, Passos passos)
+        public Arquivo(string nome, string extensao, Passos passos, TipoArquivo[] tipoArquivo, List<string> conteudoArquivo)
         {
             this.Nome = nome;
             this.Extensao = extensao;
             this.Passos = passos;
+            this.TipoArquivo = tipoArquivo;
+            this.ConteudoArquivo = conteudoArquivo;
         }
 
         public string Diretorio
@@ -57,66 +55,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }
 
-        public List<string> RetornaConteudoArquivo(string pathArquivo, OpenFileDialog objOpenFile, int numeroLinha)
-        {
-            List<string> conteudoArquivo = new List<string>();
-
-            using (Stream stream = objOpenFile.OpenFile())
-            using (StreamReader arquivo = new StreamReader(stream, Encoding.UTF8, true))
-            {
-                for (int i = 0; i < numeroLinha; i++)
-                {
-                    arquivo.ReadLine();
-                }
-
-                int contadorLinha = 0;
-
-                while (!arquivo.EndOfStream)
-                {
-                    string linha = arquivo.ReadLine();
-
-                    conteudoArquivo.Add(linha);
-
-                    contadorLinha++;
-                }
-
-                arquivo.Close();
-
-                return conteudoArquivo;
-            }
-
-        }
-
-
-        public string LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
-        {
-            string conteudoAtual = string.Empty;
-
-            try
-            {
-                if (iArquivo.ValidaSeArquivoExisteNoDiretorio(nomeArquivo))
-                {
-                    using (Stream stm = objOpenFile.OpenFile())
-                    using (StreamReader str = new StreamReader(stm))
-                    {
-                        conteudoAtual = str.ReadLine();
-
-
-
-                    }
-
-                    MessageBox.Show("Leitura finalizada!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
-            }
-
-            return conteudoAtual;
-
-        }
-
         public string RetornaExtensaoDoArquivo(string nomeArquivo)
         {
             return iArquivo.RetornaExtensaoDoArquivo(nomeArquivo);
@@ -132,9 +70,44 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return rtnNmArquivo;
         }
 
-        private void CriarArquivoDeRetorno(List<string> resultList, string diretorio, string nomeArquivo)
+        public List<string> RetornaConteudoArquivo(string pathArquivo, OpenFileDialog objOpenFile, int numeroLinha)
         {
+            List<string> conteudoArquivo = new List<string>();
+
+            try
+            {
+                using (Stream stream = objOpenFile.OpenFile())
+                using (StreamReader arquivo = new StreamReader(stream, Encoding.UTF8, true))
+                {
+                    for (int i = 0; i < numeroLinha; i++)
+                    {
+                        arquivo.ReadLine();
+                    }
+
+                    int contadorLinha = 0;
+
+                    while (!arquivo.EndOfStream)
+                    {
+                        string linha = arquivo.ReadLine();
+
+                        conteudoArquivo.Add(linha);
+
+                        contadorLinha++;
+                    }
+
+                    //arquivo.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+                throw;
+            }
+
+            return conteudoArquivo;
 
         }
+
+
     }
 }

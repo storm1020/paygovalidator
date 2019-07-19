@@ -9,8 +9,6 @@ namespace PaygoLogValidator.PaygoValidator.BO.Interface
 {
     interface IPassosBO
     {
-        string VerificaSeExistePassoNaLinha(string conteudoLinha);
-
-        bool VerificarObrigatoriedadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice);
+        
     }
 }

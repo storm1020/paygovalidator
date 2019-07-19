@@ -57,12 +57,36 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
         }
 
-        //public List<string> RetornaConteudoArquivo(string pathArquivo, )
-        //{
-        //    List<string> conteudoArquivo = new List<string>();
-        //}
+        public List<string> RetornaConteudoArquivo(string pathArquivo, OpenFileDialog objOpenFile, int numeroLinha)
+        {
+            List<string> conteudoArquivo = new List<string>();
 
-            //oi
+            using (Stream stream = objOpenFile.OpenFile())
+            using (StreamReader arquivo = new StreamReader(stream, Encoding.UTF8, true))
+            {
+                for (int i = 0; i < numeroLinha; i++)
+                {
+                    arquivo.ReadLine();
+                }
+
+                int contadorLinha = 0;
+
+                while (!arquivo.EndOfStream)
+                {
+                    string linha = arquivo.ReadLine();
+
+                    conteudoArquivo.Add(linha);
+
+                    contadorLinha++;
+                }
+
+                arquivo.Close();
+
+                return conteudoArquivo;
+            }
+
+        }
+
 
         public string LerArquivo(string nomeArquivo, string diretorio, OpenFileDialog objOpenFile, Arquivo arquivo, Passos passos)
         {

@@ -31,6 +31,25 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
+        public void Teste(List<string> conteudoArquivo)
+        {
+            List<string> caralho = new List<string>();
+
+            foreach (var item in conteudoArquivo)
+            {
+                int indiceAtual = RetornaIndiceDoPasso(item);
+
+                if (RetornaIndiceDoPasso(item) > 0) //Indetificou um passo no conteudo da linha.
+                {
+                    do
+                    {
+                        caralho.Add(item.ToString());
+
+                    } while (RetornaIndiceDoPasso(item) < 2);
+                }
+            }
+        }
+
         public int RetornaIndiceDoPasso(string linha)
         {
             string passo = VerificaSeExistePassoNaLinha(linha);

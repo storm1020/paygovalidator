@@ -31,25 +31,67 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        public void Teste(List<string> conteudoArquivo)
+        public bool ExisteIndice(string linhaAtual)
         {
-            List<string> conteudoDoPasso = new List<string>();
-
-            foreach (var item in conteudoArquivo)
+            if (RetornaIndiceDeAcordoComConteudoDaLinha(linhaAtual) > 0)
             {
-                if (RetornaIndiceDoPasso(item) > 0) //Existe passo!
-                {
-
-                }
+                return true;
             }
+
+            return false;
         }
 
-        //public bool IdentificaPassoNaLeitura()
-        //{
+        public int GetIndiceDoPasso(List<string> conteudoArquivo)
+        {
+            int indice = 0;
 
-        //}
+            try
+            {
+                foreach (var item in conteudoArquivo)
+                {
+                    if (ExisteIndice(item))
+                    {
+                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(item);
 
-        public int RetornaIndiceDoPasso(string linha)
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", "Ops! Problema ao percorrer o arquivo, consulte a seguinte mesagem", ex.Message.ToString()));
+                throw;
+            }
+
+            return indice;
+        }
+
+        public int GetIndiceDoPasso(Dictionary<int, string> conteudoArquivo)
+        {
+            int indice = 0;
+
+            try
+            {
+                foreach (var item in conteudoArquivo.Values)
+                {
+                    if (ExisteIndice(item))
+                    {
+                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(item);
+
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", "Ops! Problema ao percorrer o arquivo, consulte a seguinte mesagem", ex.Message.ToString()));
+                throw;
+            }
+
+            return indice;
+        }
+
+        public int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
         {
             string passo = VerificaSeExistePassoNaLinha(linha);
 
@@ -301,7 +343,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         }
 
-        public bool RetornaOpcionalidadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
+        public bool GetOpcionalidadeDoPasso(int indicePasso, TipoArquivo[] tipoArquivo)
         {
             bool opcional = false;
 

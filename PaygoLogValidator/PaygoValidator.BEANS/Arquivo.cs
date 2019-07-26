@@ -70,6 +70,41 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return rtnNmArquivo;
         }
 
+        public Dictionary<int, string> RetornaConteudoArquivoRf(string pathArquivo, OpenFileDialog objOpenFile, int numeroLinha)
+        {
+            Dictionary<int, string> conteudoArquivo = new Dictionary<int, string>();
+
+            try
+            {
+                using (Stream stream = objOpenFile.OpenFile())
+                using (StreamReader arquivo = new StreamReader(stream, Encoding.UTF8, true))
+                {
+                    for (int i = 0; i < numeroLinha; i++)
+                    {
+                        arquivo.ReadLine();
+                    }
+
+                    int contadorLinha = 0;
+
+                    while (!arquivo.EndOfStream)
+                    {
+                        string linha = arquivo.ReadLine();
+
+                        conteudoArquivo.Add(contadorLinha, linha);
+
+                        contadorLinha++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+                throw;
+            }
+
+            return conteudoArquivo;
+        }
+
         public List<string> RetornaConteudoArquivo(string pathArquivo, OpenFileDialog objOpenFile, int numeroLinha)
         {
             List<string> conteudoArquivo = new List<string>();
@@ -94,8 +129,6 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
                         contadorLinha++;
                     }
-
-                    //arquivo.Close();
                 }
             }
             catch (Exception ex)
@@ -107,7 +140,5 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return conteudoArquivo;
 
         }
-
-
     }
 }

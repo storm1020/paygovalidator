@@ -72,11 +72,11 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             try
             {
-                foreach (var item in conteudoArquivo.Values)
+                foreach (var values in conteudoArquivo.Values)
                 {
-                    if (ExisteIndice(item))
+                    if (ExisteIndice(values))
                     {
-                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(item);
+                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(values);
 
                         break;
                     }
@@ -90,6 +90,36 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             return indice;
         }
+
+
+        public Dictionary<int, string> RetornaIndiceEhValorDaLinhaAoEncontrarOhPasso(Dictionary<int, string> conteudoArquivo)
+        {
+            try
+            {
+                foreach (var item in conteudoArquivo)
+                {
+                    if (ExisteIndice(item.Value))
+                    {
+
+                        string itemSplt = item.ToString();
+                        string[] valoresSplt = itemSplt.Split();
+                        int indiceLinha = Convert.ToInt16(valoresSplt[0]);
+                        string valorLinha = Convert.ToString(valoresSplt[1]);
+
+                        MessageBox.Show(item.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("{0}: {1}", "Ops! Problema ao percorrer o arquivo, consulte a seguinte mesagem", ex.Message.ToString()));
+                throw;
+            }
+
+            return conteudoArquivo;
+        }
+
+
 
         public int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
         {

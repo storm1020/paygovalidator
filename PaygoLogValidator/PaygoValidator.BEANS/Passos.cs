@@ -91,9 +91,27 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
+        public Dictionary<int, string> TrataEhRetornaIndiceEhDescricao (string conteudoItem)
+        {
+            Dictionary<int, string> indiceEhConteudoRetorno = new Dictionary<int, string>();
+
+            if (!string.IsNullOrWhiteSpace(conteudoItem))
+            {
+                string[] conteudoItemSplt = conteudoItem.Split();
+                int indiceLinha = Convert.ToInt16(conteudoItemSplt[0]);
+                string descricaoLinha = Convert.ToString(conteudoItemSplt[1]);
+
+                indiceEhConteudoRetorno.Add(indiceLinha, descricaoLinha);
+            }
+
+            return indiceEhConteudoRetorno;
+        }
 
         public Dictionary<int, string> RetornaIndiceEhValorDaLinhaAoEncontrarOhPasso(Dictionary<int, string> conteudoArquivo)
         {
+
+            Dictionary<int, string> conteudoRetorno = new Dictionary<int, string>();
+
             try
             {
                 foreach (var item in conteudoArquivo)
@@ -101,12 +119,19 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                     if (ExisteIndice(item.Value))
                     {
 
-                        string itemSplt = item.ToString();
-                        string[] valoresSplt = itemSplt.Split();
-                        int indiceLinha = Convert.ToInt16(valoresSplt[0]);
-                        string valorLinha = Convert.ToString(valoresSplt[1]);
 
-                        MessageBox.Show(item.ToString());
+                        conteudoArquivo = TrataEhRetornaIndiceEhDescricao(item.ToString());
+
+                        #region logica tratativa para inserir indice e descricao no conteudo
+                        //string itemSplt = item.ToString();
+                        //string[] valoresSplt = itemSplt.Split();
+                        //int indiceLinha = Convert.ToInt16(valoresSplt[0]);
+                        //string valorLinha = Convert.ToString(valoresSplt[1]);
+
+                        //conteudoArquivo.Add(indiceLinha, valorLinha);
+                        #endregion
+
+                        MessageBox.Show(conteudoArquivo.ToString());
                     }
                 }
             }
@@ -116,10 +141,8 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
                 throw;
             }
 
-            return conteudoArquivo;
+            return conteudoRetorno;
         }
-
-
 
         public int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
         {

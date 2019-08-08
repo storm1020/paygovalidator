@@ -13,7 +13,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
     {
         private IPassosBO iPassos = new PassosBO();
 
-        public int indice { get; set; }
+        public int Indice { get; set; }
         public List<string> conteudo { get; set; }
         public bool status { get; set; }
         public bool opcional { get; set; }
@@ -25,7 +25,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         public Passos(int indice, List<string> conteudo, bool status, bool opcional)
         {
-            this.indice = indice;
+            this.Indice = indice;
             this.conteudo = conteudo;
             this.status = status;
             this.opcional = opcional;
@@ -91,61 +91,10 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        public Dictionary<int, string> TrataEhRetornaIndiceEhDescricao (string conteudoItem)
+        private int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
         {
-            Dictionary<int, string> indiceEhConteudoRetorno = new Dictionary<int, string>();
+            int indice = 0;
 
-            if (!string.IsNullOrWhiteSpace(conteudoItem))
-            {
-                string[] conteudoItemSplt = conteudoItem.Split();
-                int indiceLinha = Convert.ToInt16(conteudoItemSplt[0]);
-                string descricaoLinha = Convert.ToString(conteudoItemSplt[1]);
-
-                indiceEhConteudoRetorno.Add(indiceLinha, descricaoLinha);
-            }
-
-            return indiceEhConteudoRetorno;
-        }
-
-        public Dictionary<int, string> RetornaIndiceEhValorDaLinhaAoEncontrarOhPasso(Dictionary<int, string> conteudoArquivo)
-        {
-
-            Dictionary<int, string> conteudoRetorno = new Dictionary<int, string>();
-
-            try
-            {
-                foreach (var item in conteudoArquivo)
-                {
-                    if (ExisteIndice(item.Value))
-                    {
-
-
-                        conteudoArquivo = TrataEhRetornaIndiceEhDescricao(item.ToString());
-
-                        #region logica tratativa para inserir indice e descricao no conteudo
-                        //string itemSplt = item.ToString();
-                        //string[] valoresSplt = itemSplt.Split();
-                        //int indiceLinha = Convert.ToInt16(valoresSplt[0]);
-                        //string valorLinha = Convert.ToString(valoresSplt[1]);
-
-                        //conteudoArquivo.Add(indiceLinha, valorLinha);
-                        #endregion
-
-                        MessageBox.Show(conteudoArquivo.ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(string.Format("{0}: {1}", "Ops! Problema ao percorrer o arquivo, consulte a seguinte mesagem", ex.Message.ToString()));
-                throw;
-            }
-
-            return conteudoRetorno;
-        }
-
-        public int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
-        {
             string passo = VerificaSeExistePassoNaLinha(linha);
 
             switch (passo)
@@ -362,7 +311,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        public string VerificaSeExistePassoNaLinha(string conteudoLinha)
+        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
         {
             string content = string.Empty;
 
@@ -374,7 +323,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return content;
         }
 
-        public string RetornaConteudoDaLinhaAtual(string conteudoLinha)
+        private string RetornaConteudoDaLinhaAtual(string conteudoLinha)
         {
             string conteudoTratado = string.Empty;
 
@@ -628,58 +577,99 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool InsereOpcionalidadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
+        public int RetornaIndiceDaLinhaQueContemTeste(Dictionary<int, string> conteudoArquivoJaPopulado)
+        {
+            int nmrLinha = 0;
+
+            foreach (var item in conteudoArquivoJaPopulado)
+            {
+                if (ExisteIndice(item.Value))
+                {
+                    nmrLinha = item.Key;
+
+                    break;
+                }
+            }
+
+            return nmrLinha;
+        }
+
+        public List<string> GetConteudoPasso(Dictionary<int, string> conteudoArquivo)
+        {
+            List<string> conteudoPasso = new List<string>();
+
+            foreach (var item in conteudoArquivo.Values)
+            {
+                if (!ExisteIndice(item))
+                {
+                    conteudoPasso.Add(item);
+                }
+
+                //if (ExisteIndice(item))
+                //{
+                //    MessageBox.Show("Tem!");
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Não tem!");
+                //}
+            }
+
+            return conteudoPasso;
+        }
+
+        private bool InsereOpcionalidadeDeAcordoComTipoDeArquivo(TipoArquivo[] tipoArquivo, int indice)
         {
             bool opcional = false;
 
             switch (indice)
             {
                 case 13:
-                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComDesconto(tipoArquivo));
                     break;
 
                 case 14:
-                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComDesconto(tipoArquivo));
                     break;
 
                 case 15:
-                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComDesconto(tipoArquivo));
                     break;
 
                 case 16:
-                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComDesconto(tipoArquivo));
                     break;
 
                 case 17:
-                    opcional = DefineOpcionalidade(ValidarComDesconto(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComDesconto(tipoArquivo));
                     break;
 
                 case 20:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 22:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 24:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 49:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 50:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 53:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
                 case 54:
-                    opcional = DefineOpcionalidade(ValidarComEcf(tipoArquivo));
+                    opcional = DefineOpcionalidade(DefineSeValidaComEcf(tipoArquivo));
                     break;
 
             }
@@ -687,7 +677,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool DefineOpcionalidade(bool rst)
+        private bool DefineOpcionalidade(bool rst)
         {
             bool opcional = false;
 
@@ -703,7 +693,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return opcional;
         }
 
-        public bool ValidarComDesconto(TipoArquivo[] tipoArquivo)
+        public bool DefineSeValidaComDesconto(TipoArquivo[] tipoArquivo)
         {
             string vlComDesconto = Convert.ToString(TipoArquivo.COM_DESCONTO);
             bool validarComDesconto = false;
@@ -720,7 +710,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return validarComDesconto;
         }
 
-        public bool ValidarComEcf(TipoArquivo[] tipoArquivo)
+        public bool DefineSeValidaComEcf(TipoArquivo[] tipoArquivo)
         {
             string vlComEcf = Convert.ToString(TipoArquivo.COM_ECF);
             bool validarComEcf = false;

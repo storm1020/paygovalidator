@@ -17,7 +17,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         public string Extensao { get; set; }
         public Passos Passos { get; set; }
         public TipoArquivo[] TipoArquivo { get; set; }
-        public List<string> ConteudoArquivo { get; set; }
+        public Dictionary<int, string> ConteudoArquivo { get; set; }
         private string diretorio = @"C:\pgValidator";
         private string diretorioResult = @"C:\pgValidator\Result";
 
@@ -26,7 +26,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
         }
 
-        public Arquivo(string nome, string extensao, Passos passos, TipoArquivo[] tipoArquivo, List<string> conteudoArquivo)
+        public Arquivo(string nome, string extensao, Passos passos, TipoArquivo[] tipoArquivo, Dictionary<int, string> conteudoArquivo)
         {
             this.Nome = nome;
             this.Extensao = extensao;

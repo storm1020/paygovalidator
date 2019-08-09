@@ -317,13 +317,13 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             if (conteudoLinha.Contains("Passo"))
             {
-                content = RetornaConteudoDaLinhaAtual(conteudoLinha);
+                content = RetornaConteudoDaLinhaAtualQueContemOhPasso(conteudoLinha);
             }
 
             return content;
         }
 
-        private string RetornaConteudoDaLinhaAtual(string conteudoLinha)
+        private string RetornaConteudoDaLinhaAtualQueContemOhPasso(string conteudoLinha)
         {
             string conteudoTratado = string.Empty;
 

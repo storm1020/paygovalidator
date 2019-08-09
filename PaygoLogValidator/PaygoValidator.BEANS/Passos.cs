@@ -597,22 +597,18 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
         public List<string> GetConteudoPasso(Dictionary<int, string> conteudoArquivo)
         {
             List<string> conteudoPasso = new List<string>();
+            //Validar se o passo é obrigatório.
+
+            //Validar se é teste OK, teste com erro ou não executado.
 
             foreach (var item in conteudoArquivo.Values)
             {
+                int tamanhoDoConteudo = item.Length;
+
                 if (!ExisteIndice(item))
                 {
                     conteudoPasso.Add(item);
                 }
-
-                //if (ExisteIndice(item))
-                //{
-                //    MessageBox.Show("Tem!");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Não tem!");
-                //}
             }
 
             return conteudoPasso;

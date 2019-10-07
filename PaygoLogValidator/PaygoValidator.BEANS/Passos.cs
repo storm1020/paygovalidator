@@ -31,9 +31,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             this.opcional = opcional;
         }
 
-        public bool ExisteIndice(string linhaAtual)
+        public bool ExisteIndiceDeTeste(string linhaAtual)
         {
-            if (RetornaIndiceDeAcordoComConteudoDaLinha(linhaAtual) > 0)
+            if (RetornaIndiceDeTesteDeAcordoComConteudoDaLinha(linhaAtual) > 0)
             {
                 return true;
             }
@@ -49,9 +49,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             {
                 foreach (var item in conteudoArquivo)
                 {
-                    if (ExisteIndice(item))
+                    if (ExisteIndiceDeTeste(item))
                     {
-                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(item);
+                        indice = RetornaIndiceDeTesteDeAcordoComConteudoDaLinha(item);
 
                         break;
                     }
@@ -74,9 +74,9 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             {
                 foreach (var values in conteudoArquivo.Values)
                 {
-                    if (ExisteIndice(values))
+                    if (ExisteIndiceDeTeste(values))
                     {
-                        indice = RetornaIndiceDeAcordoComConteudoDaLinha(values);
+                        indice = RetornaIndiceDeTesteDeAcordoComConteudoDaLinha(values);
 
                         break;
                     }
@@ -91,11 +91,11 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        private int RetornaIndiceDeAcordoComConteudoDaLinha(string linha)
+        private int RetornaIndiceDeTesteDeAcordoComConteudoDaLinha(string linha)
         {
             int indice = 0;
 
-            string passo = VerificaSeExistePassoNaLinha(linha);
+            string passo = VerificaSeExisteDescricaoDePassoNaLinha(linha);
 
             switch (passo)
             {
@@ -311,7 +311,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             return indice;
         }
 
-        private string VerificaSeExistePassoNaLinha(string conteudoLinha)
+        private string VerificaSeExisteDescricaoDePassoNaLinha(string conteudoLinha)
         {
             string content = string.Empty;
 
@@ -583,7 +583,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
 
             foreach (var item in conteudoArquivoJaPopulado)
             {
-                if (ExisteIndice(item.Value))
+                if (ExisteIndiceDeTeste(item.Value))
                 {
                     nmrLinha = item.Key;
 
@@ -605,10 +605,13 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             {
                 int tamanhoDoConteudo = item.Length;
 
-                if (!ExisteIndice(item))
+                //Contem passo.
+                if (!ExisteIndiceDeTeste(item)) 
                 {
-                    conteudoPasso.Add(item);
+                    conteudoPasso.Add(item); //Não contem passo.
                 }
+
+                //Enquanto o passo atual for menor que o próximo passo encontrado, adicione a lista!
             }
 
             return conteudoPasso;

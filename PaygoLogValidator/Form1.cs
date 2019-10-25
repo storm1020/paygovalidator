@@ -64,9 +64,10 @@ namespace PaygoLogValidator
                 string nomeArquivo = objArquivo.RetornaNomeDoArquivo(openFile.FileName);
                 string extensaoArquivo = objArquivo.RetornaExtensaoDoArquivo(nomeArquivo);
                 Dictionary<int, string> conteudoArquivo = objArquivo.RetornaConteudoArquivo(openFile.FileName, openFile, 0);
-                int indiceDaLinhaQueContemTeste = objArquivo.RetornaIndiceDaLinhaQueContemTeste(conteudoArquivo);
-                //Sobrescreve o conteudoArquivo pra pegar desde a linha que contém o passo.
-                conteudoArquivo = objArquivo.RetornaConteudoArquivo(openFile.FileName, openFile, indiceDaLinhaQueContemTeste);
+                //int indiceDaLinhaQueContemTeste = objArquivo.RetornaIndiceDaLinhaQueContemTeste(conteudoArquivo);
+
+                //Sobrescreve o conteudoArquivo para pegar desde a linha que contém o passo.
+                conteudoArquivo = objArquivo.RetornaConteudoArquivo(openFile.FileName, openFile, objArquivo.RetornaIndiceDaLinhaQueContemTeste(conteudoArquivo)/*indiceDaLinhaQueContemTeste*/);
 
                 //int indicePasso = objPassos.GetIndiceDoPasso(conteudoArquivo);
                 //bool opcional = objPassos.GetOpcionalidadeDoPasso(indicePasso, objArquivo.TipoArquivo);

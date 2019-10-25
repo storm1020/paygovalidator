@@ -98,7 +98,7 @@ namespace PaygoLogValidator.PaygoValidator.BEANS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Falha ao processar arquivo, verifique a mensagem: {0}", ex.Message));
+                MessageBox.Show(string.Format("Falha ao processar arquivo, erro: {0}", ex.Message));
                 throw;
             }
 
